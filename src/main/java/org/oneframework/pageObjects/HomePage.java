@@ -2,7 +2,7 @@ package org.oneframework.pageObjects;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.oneframework.helpers.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,12 +17,12 @@ public class HomePage extends Page {
 
     @FindBy(xpath = "//a[@title='Log In'][1]")
     @AndroidFindBy(id = "login_button")
-    @iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label, 'Log In')]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label, 'Log In')]")
     private WebElement eleSignInBtn;
 
     @FindBy(xpath = "//a[@title='Get Started']")
     @AndroidFindBy(id = "create_site_button")
-    @iOSFindBy(id = "Sign up for WordPress.com Button")
+    @iOSXCUITFindBy(id = "Sign up for WordPress.com Button")
     private WebElement eleSignUpBtn;
 
     public HomePage(WebDriver driver) throws InterruptedException {

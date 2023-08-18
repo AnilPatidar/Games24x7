@@ -2,7 +2,7 @@ package org.oneframework.pageObjects;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.oneframework.helpers.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,7 @@ public class SignUpPage extends Page {
 
     @FindBy(xpath = "//div[@class='login__form-header']")
     @AndroidFindBy(id = "label")
-    @iOSFindBy(id = "Log in to WordPress.com using an email address to manage all your WordPress sites.")
+    @iOSXCUITFindBy(id = "Log in to WordPress.com using an email address to manage all your WordPress sites.")
     private WebElement elePageTitle;
 
     WebDriver driver;
