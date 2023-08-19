@@ -24,7 +24,7 @@ public class AppiumServer {
         portAtomic.set(port);
         CommandLineExecutor.killProcessListeningAtPort(port);
         AppiumServiceBuilder builder = new AppiumServiceBuilder()
-                .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
+                .withAppiumJS(new File("/Users/anil-patidar/.nvm/versions/node/v16.15.1/lib/node_modules/appium/build/lib/main.js"))
                 .usingPort(port)
                 .withArgument(GeneralServerFlag.SESSION_OVERRIDE);
         driverAppiumServer.set(builder.build());
