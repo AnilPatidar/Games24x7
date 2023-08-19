@@ -28,7 +28,7 @@ public class BaseTest {
     }
 
     @Parameters({"platformType", "platformName"})
-    @AfterTest
+    @AfterMethod
     public void stopAppiumServer(String platformType, @Optional String platformName) throws IOException {
         if (platformType.equalsIgnoreCase(PlatformType.MOBILE.toString())) {
                 if (AppiumServer.getAppiumDriverLocalService() != null || AppiumServer.getAppiumDriverLocalService().isRunning()) {

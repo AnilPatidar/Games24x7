@@ -32,6 +32,7 @@ public class ImageComparator extends DeviceConfig {
         baselineImageDirFullPath = "baselineImages/" + getExecutionPlatform() + "/";
     }
 
+
     private BufferedImage getBaselineImage(String imageName) throws IOException {
         File expectedImageFile = FileUtils.getFile(FileUtility.getFile(baselineImageDirFullPath + imageName + ".png").getAbsolutePath());
         BufferedImage expectedImage = ImageIO.read(expectedImageFile);
