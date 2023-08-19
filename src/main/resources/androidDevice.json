@@ -3,7 +3,7 @@
     "name": "pixel",
     "deviceName": "emulator-5554",
     "platformName": "Android",
-    "platformVersion": "9",
+    "platformVersion": "13",
     "automationName": "UIAutomator2",
     "packageName": "org.wordpress.android",
     "activity": "org.wordpress.android.ui.WPLaunchActivity",

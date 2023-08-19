@@ -3,6 +3,7 @@ package org.oneframework.drivers;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.oneframework.appium.AppiumServer;
 import org.oneframework.config.AndroidDeviceModel;
 import org.oneframework.config.DeviceConfig;
 import org.oneframework.utils.FileUtility;
@@ -23,7 +24,6 @@ public class AndroidDriverBuilder extends DeviceConfig {
         AndroidDeviceModel device = readAndroidDeviceConfig().getAndroidDeviceByName(model);
         logMessage("Received the " + model + " device configuration for execution");
         setExecutionPlatform(model);
-
         androidCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device.getDeviceName());
         androidCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, device.getPlatformName());
         androidCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, device.getPlatformVersion());
@@ -32,7 +32,7 @@ public class AndroidDriverBuilder extends DeviceConfig {
         androidCapabilities.setCapability(MobileCapabilityType.APP, FileUtility.getFile(device.getApp()).getAbsolutePath());
         androidCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, device.getPackageName());
         androidCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, device.getActivity());
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), androidCapabilities);
+        driver = new AndroidDriver(new URL("http://127.0.0.1:"+ AppiumServer.getPortNumber() +"/wd/hub"), androidCapabilities);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         logMessage("Android driver has been created for the " + model + " device");
         return driver;

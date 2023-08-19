@@ -1,5 +1,6 @@
 package tests;
 
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.oneframework.drivers.AndroidDriverBuilder;
 import org.oneframework.appium.AppiumServer;
 import org.oneframework.drivers.IOSDriverBuilder;
@@ -14,17 +15,15 @@ import java.io.IOException;
 import static org.oneframework.logger.LoggingManager.logMessage;
 
 public class BaseTest {
-    public WebDriver driver;
+
+
+    public static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
 
     @Parameters({"platformType", "platformName"})
     @BeforeTest
     public void startAppiumServer(String platformType, @Optional String platformName) throws IOException {
         if (platformType.equalsIgnoreCase(PlatformType.MOBILE.toString())) {
-            killExistingAppiumProcess();
-            if (AppiumServer.appium == null || !AppiumServer.appium.isRunning()) {
-                AppiumServer.start();
-                logMessage("Appium server has been started");
-            }
+
         }
     }
 
@@ -32,8 +31,7 @@ public class BaseTest {
     @AfterTest
     public void stopAppiumServer(String platformType, @Optional String platformName) throws IOException {
         if (platformType.equalsIgnoreCase(PlatformType.MOBILE.toString())) {
-            if (AppiumServer.appium != null || AppiumServer.appium.isRunning()) {
-                AppiumServer.stop();
+                if (AppiumServer.getAppiumDriverLocalService() != null || AppiumServer.getAppiumDriverLocalService().isRunning()) {
                 logMessage("Appium server has been stopped");
             }
         }
@@ -43,40 +41,53 @@ public class BaseTest {
     @BeforeMethod
     public void setupDriver(String platformType, String platformName, @Optional String model) throws IOException {
         if (platformType.equalsIgnoreCase(PlatformType.WEB.toString())) {
-            setupWebDriver(platformName);
+            driverThread.set(setupWebDriver(platformName));
+            driverThread.get().get("https://www.wordpress.com");
         } else if (platformType.equalsIgnoreCase(PlatformType.MOBILE.toString())) {
-            setupMobileDriver(platformName, model);
+            AppiumServer.start();
+            driverThread.set(setupMobileDriver(platformName, model));
         }
     }
 
-    public void setupMobileDriver(String platformName, String model) throws IOException {
+    public WebDriver setupMobileDriver(String platformName, String model) throws IOException {
         if (platformName.equalsIgnoreCase(PlatformName.ANDROID.toString())) {
-            driver = new AndroidDriverBuilder().setupDriver(model);
+            return new AndroidDriverBuilder().setupDriver(model);
         } else if (platformName.equalsIgnoreCase(PlatformName.IOS.toString())) {
-            driver = new IOSDriverBuilder().setupDriver(model);
+            return new IOSDriverBuilder().setupDriver(model);
         }
-        logMessage(model + " driver has been created for execution");
+        logMessage(model + " driver not has been created for execution");
+        return null;
     }
 
-    public void setupWebDriver(String platformName) {
+    public WebDriver setupWebDriver(String platformName) {
         if (platformName.equalsIgnoreCase(PlatformName.CHROME.toString())) {
-            driver = new WebDriverBuilder().setupDriver(platformName);
+            return new WebDriverBuilder().setupDriver(platformName);
         } else if (platformName.equalsIgnoreCase(PlatformName.FIREFOX.toString())) {
-            driver = new WebDriverBuilder().setupDriver(platformName);
+            return new WebDriverBuilder().setupDriver(platformName);
         }
-        logMessage(platformName + " driver has been created for execution");
-        driver.get("https://www.wordpress.com");
+        logMessage(platformName + " driver has not been created for execution");
+        return null;
     }
 
     @AfterMethod
-    public void teardownDriver() {
-        driver.quit();
+    public void teardownDriver() throws IOException {
+        driverThread.get().quit();
         logMessage("Driver has been quit from execution");
     }
+
+
 
     private void killExistingAppiumProcess() throws IOException {
         Runtime.getRuntime().exec("killall node");
         logMessage("Killing existing appium process");
     }
+
+    public static WebDriver getDriver() {
+        if (driverThread.get() == null) {
+
+        }
+        return driverThread.get();
+    }
+
 
 }

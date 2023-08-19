@@ -29,7 +29,7 @@ public class TestListener extends BaseTest implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         System.out.println("TEST FAIL: "+iTestResult.getMethod().getMethodName()+" - "+iTestResult.getMethod().getDescription());
         Object testClass = iTestResult.getInstance();
-        WebDriver driver = ((BaseTest)testClass).driver;
+        WebDriver driver =driverThread.get();
         saveScreenshot(driver, iTestResult);
     }
 
