@@ -162,6 +162,7 @@ public class ATDExecutor {
     private Set<Method> getMethods(String pack) throws MalformedURLException {
         URL newUrl;
         List<URL> newUrls = new ArrayList<>();
+        //Adds all the packages names (Separated by comma)
         addAll(items, pack.split("\\s*,\\s*"));
         int a = 0;
         Collection<URL> urls = ClasspathHelper.forPackage(items.get(a));

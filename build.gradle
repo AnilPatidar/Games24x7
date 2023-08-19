@@ -14,6 +14,8 @@ repositories {
     mavenCentral()
 }
 
+
+
 dependencies {
     implementation group: 'io.appium', name: 'java-client', version: '7.1.0'
     // https://mvnrepository.com/artifact/org.testng/testng
@@ -26,6 +28,21 @@ dependencies {
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.0'
     implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
 
+}
+
+test {
+
+    useTestNG() {
+        suites "${System.getProperty('suiteXmlFile', 'src/main/resources/testng.xml')}"
+    }
+}
+
+task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
+    useTestNG() {
+        useDefaultListeners = true
+        suites 'src/test/resources/testng.xml'
+        includeGroups 'smoke' // We define the group name by using ‘includeGroups’ parameter.
+    }
 }
 
 jar {

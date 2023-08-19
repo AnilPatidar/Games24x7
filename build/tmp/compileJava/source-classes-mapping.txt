@@ -1,0 +1,66 @@
+org/oneframework/drivers/IOSDriverBuilder.java
+ org.oneframework.drivers.IOSDriverBuilder
+org/oneframework/drivers/AndroidDriverBuilder.java
+ org.oneframework.drivers.AndroidDriverBuilder
+org/oneframework/enums/Platform.java
+ org.oneframework.enums.Platform
+org/oneframework/config/AndroidDeviceModel.java
+ org.oneframework.config.AndroidDeviceModel
+org/oneframework/imageCompare/DeviceViewportModel.java
+ org.oneframework.imageCompare.DeviceViewportModel
+org/oneframework/utils/ConfigFileManager.java
+ org.oneframework.utils.ConfigFileManager
+org/oneframework/utils/FileLocations.java
+ org.oneframework.utils.FileLocations
+org/oneframework/utils/OverriddenVariable.java
+ org.oneframework.utils.OverriddenVariable
+org/oneframework/config/DeviceConfig.java
+ org.oneframework.config.DeviceConfig
+tests/MainClass.java
+ tests.MainClass
+org/oneframework/appium/AppiumServer.java
+ org.oneframework.appium.AppiumServer
+org/oneframework/pageObjects/SignInPage.java
+ org.oneframework.pageObjects.SignInPage
+org/oneframework/config/IOSDeviceModel.java
+ org.oneframework.config.IOSDeviceModel
+org/oneframework/utils/ADBUtilities.java
+ org.oneframework.utils.ADBUtilities
+org/oneframework/helpers/Page.java
+ org.oneframework.helpers.Page
+org/oneframework/enums/PlatformType.java
+ org.oneframework.enums.PlatformType
+org/oneframework/allureReport/TestListener.java
+ org.oneframework.allureReport.TestListener
+org/oneframework/pageObjects/SignUpPage.java
+ org.oneframework.pageObjects.SignUpPage
+org/oneframework/enums/DeviceModel.java
+ org.oneframework.enums.DeviceModel
+org/oneframework/imageCompare/ImageComparator.java
+ org.oneframework.imageCompare.ImageComparator
+tests/HomePageTest.java
+ tests.HomePageTest
+org/oneframework/utils/CommandLineResponse.java
+ org.oneframework.utils.CommandLineResponse
+org/oneframework/runner/TestRunner.java
+ org.oneframework.runner.TestRunner
+org/oneframework/logger/LoggingManager.java
+ org.oneframework.logger.LoggingManager
+org/oneframework/utils/FileUtility.java
+ org.oneframework.utils.FileUtility
+org/oneframework/utils/ATDExecutor.java
+ org.oneframework.utils.ATDExecutor
+ org.oneframework.utils.ATDExecutor$CreateGroups
+org/oneframework/pageObjects/HomePage.java
+ org.oneframework.pageObjects.HomePage
+org/oneframework/utils/StringUtils.java
+ org.oneframework.utils.StringUtils
+tests/BaseTest.java
+ tests.BaseTest
+org/oneframework/enums/PlatformName.java
+ org.oneframework.enums.PlatformName
+org/oneframework/drivers/WebDriverBuilder.java
+ org.oneframework.drivers.WebDriverBuilder
+org/oneframework/utils/CommandLineExecutor.java
+ org.oneframework.utils.CommandLineExecutor
+ org.oneframework.utils.CommandLineExecutor$1
