@@ -38,6 +38,5 @@ replay_pid*
 *.iml
 *.ipr
 
-target/*
 test-output
 test-output-tests
