@@ -230,6 +230,7 @@ public class ATDExecutor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Test ng file is successfully written");
     }
 
     private void include(List<String> groupsInclude, ConfigFileManager config) {

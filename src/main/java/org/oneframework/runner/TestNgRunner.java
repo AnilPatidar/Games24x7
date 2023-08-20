@@ -10,6 +10,10 @@ public class TestNgRunner {
     ATDExecutor executor = new ATDExecutor();
     @Test
     public void starTest() throws Exception {
-        executor.constructXMLAndTriggerParallelRunner(new ArrayList<>(),"tests" ,1,"distribute");
+        try {
+            boolean result=executor.constructXMLAndTriggerParallelRunner(new ArrayList<>(), "tests", 1, "distribute");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

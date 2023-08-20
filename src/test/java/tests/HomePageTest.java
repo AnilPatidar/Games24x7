@@ -14,6 +14,7 @@ public class HomePageTest extends BaseTest {
 
     @Test(description = "testing the signin page visually")
     public void testSignInOption() throws Exception {
+        System.out.println("Running testSignInOption");
         HomePage homePage = new HomePage(driverThread.get());
         softAssert.assertTrue(new ImageComparator(driverThread.get()).compare("homePage"), "homePage baseline image isn't matching with actual image.");
         homePage.chooseSignInOption();
@@ -23,6 +24,7 @@ public class HomePageTest extends BaseTest {
 
     @Test(description = "testing the signup page visually")
     public void testSignUpOption() throws Exception {
+        System.out.println("Running testSignUpOption");
         HomePage homePage = new HomePage(driverThread.get());
         homePage.chooseSignUpOption();
         softAssert.assertTrue(new ImageComparator(driverThread.get()).compare("signupPage"), "signupPage baseline image isn't matching with actual image.");

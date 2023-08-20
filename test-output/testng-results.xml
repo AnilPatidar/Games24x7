@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="2" passed="0" failed="0" skipped="2">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-08-20T07:13:17Z" name="ATDSuiteName" finished-at="2023-08-20T07:13:19Z" duration-ms="1853">
+  <suite started-at="2023-08-20T11:33:53Z" name="ATDSuiteName" finished-at="2023-08-20T11:33:55Z" duration-ms="1801">
     <groups>
     </groups>
-    <test started-at="2023-08-20T07:13:17Z" name="ATDTest" finished-at="2023-08-20T07:13:19Z" duration-ms="1853">
+    <test started-at="2023-08-20T11:33:53Z" name="ATDTest" finished-at="2023-08-20T11:33:55Z" duration-ms="1801">
       <class name="tests.HomePageTest">
-        <test-method is-config="true" signature="startAppiumServer(java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:17Z" name="startAppiumServer" finished-at="2023-08-20T07:13:17Z" duration-ms="13" status="PASS">
+        <test-method is-config="true" signature="startAppiumServer(java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:53Z" name="startAppiumServer" finished-at="2023-08-20T11:33:53Z" duration-ms="11" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -23,7 +23,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startAppiumServer -->
-        <test-method is-config="true" signature="setupDriver(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:17Z" name="setupDriver" finished-at="2023-08-20T07:13:19Z" duration-ms="1621" status="FAIL">
+        <test-method is-config="true" signature="setupDriver(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:53Z" name="setupDriver" finished-at="2023-08-20T11:33:54Z" duration-ms="1616" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -72,7 +72,7 @@ at java.base/java.lang.Thread.run(Thread.java:829)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupDriver -->
-        <test-method signature="testSignInOption()[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:19Z" name="testSignInOption" description="testing the signin page visually" finished-at="2023-08-20T07:13:19Z" duration-ms="0" status="SKIP">
+        <test-method signature="testSignInOption()[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:55Z" name="testSignInOption" description="testing the signin page visually" finished-at="2023-08-20T11:33:55Z" duration-ms="0" status="SKIP">
           <exception class="java.util.NoSuchElementException">
             <message>
               <![CDATA[No value present]]>
@@ -106,15 +106,19 @@ at java.base/java.lang.Thread.run(Thread.java:829)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSignInOption -->
-        <test-method is-config="true" signature="stopAppiumServer(java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:19Z" name="stopAppiumServer" finished-at="2023-08-20T07:13:19Z" duration-ms="0" status="SKIP">
+        <test-method is-config="true" signature="stopAppiumServer(java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:55Z" name="stopAppiumServer" finished-at="2023-08-20T11:33:55Z" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- stopAppiumServer -->
-        <test-method is-config="true" signature="teardownDriver()[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:19Z" name="teardownDriver" finished-at="2023-08-20T07:13:19Z" duration-ms="0" status="SKIP">
+        <test-method is-config="true" signature="teardownDriver()[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:55Z" name="teardownDriver" finished-at="2023-08-20T11:33:55Z" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardownDriver -->
-        <test-method signature="testSignUpOption()[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:19Z" name="testSignUpOption" description="testing the signup page visually" finished-at="2023-08-20T07:13:19Z" duration-ms="0" status="SKIP">
+        <test-method is-config="true" signature="setupDriver(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:55Z" name="setupDriver" finished-at="2023-08-20T11:33:55Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupDriver -->
+        <test-method signature="testSignUpOption()[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:55Z" name="testSignUpOption" description="testing the signup page visually" finished-at="2023-08-20T11:33:55Z" duration-ms="0" status="SKIP">
           <exception class="java.util.NoSuchElementException">
             <message>
               <![CDATA[No value present]]>
@@ -148,18 +152,14 @@ at java.base/java.lang.Thread.run(Thread.java:829)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSignUpOption -->
-        <test-method is-config="true" signature="setupDriver(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:19Z" name="setupDriver" finished-at="2023-08-20T07:13:19Z" duration-ms="0" status="SKIP">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setupDriver -->
-        <test-method is-config="true" signature="stopAppiumServer(java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:19Z" name="stopAppiumServer" finished-at="2023-08-20T07:13:19Z" duration-ms="0" status="SKIP">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- stopAppiumServer -->
-        <test-method is-config="true" signature="teardownDriver()[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T07:13:19Z" name="teardownDriver" finished-at="2023-08-20T07:13:19Z" duration-ms="0" status="SKIP">
+        <test-method is-config="true" signature="teardownDriver()[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:55Z" name="teardownDriver" finished-at="2023-08-20T11:33:55Z" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardownDriver -->
+        <test-method is-config="true" signature="stopAppiumServer(java.lang.String, java.lang.String)[pri:0, instance:tests.HomePageTest@2543d071]" started-at="2023-08-20T11:33:55Z" name="stopAppiumServer" finished-at="2023-08-20T11:33:55Z" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopAppiumServer -->
       </class> <!-- tests.HomePageTest -->
     </test> <!-- ATDTest -->
   </suite> <!-- ATDSuiteName -->
