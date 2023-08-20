@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="1" parallel="methods" data-provider-thread-count="1" name="ATDSuiteName" verbose="2">
-  <listeners>
-    <listener class-name="com.appium.manager.AppiumParallelMethodTestListener"/>
-    <listener class-name="com.appium.utils.RetryListener"/>
-  </listeners>
   <test thread-count="1" parallel="methods" name="ATDTest" verbose="2">
+    <parameter name="platformType" value="mobile"/>
+    <parameter name="platformName" value="android"/>
     <parameter name="device" value=""/>
     <classes>
       <class name="tests.HomePageTest"/>

@@ -1,8 +1,7 @@
 package tests;
 
-import io.appium.java_client.service.local.AppiumDriverLocalService;
-import org.oneframework.drivers.AndroidDriverBuilder;
 import org.oneframework.appium.AppiumServer;
+import org.oneframework.drivers.AndroidDriverBuilder;
 import org.oneframework.drivers.IOSDriverBuilder;
 import org.oneframework.drivers.WebDriverBuilder;
 import org.oneframework.enums.PlatformName;

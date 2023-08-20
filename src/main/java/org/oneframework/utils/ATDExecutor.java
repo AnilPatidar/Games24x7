@@ -25,6 +25,7 @@ import static java.util.Collections.addAll;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.oneframework.utils.ConfigFileManager.*;
 import static org.oneframework.utils.FileLocations.PARALLEL_XML_LOCATION;
+import static org.oneframework.utils.OverriddenVariable.getOverriddenStringValue;
 
 public class ATDExecutor {
  //   private final DeviceAllocationManager deviceAllocationManager;
@@ -32,6 +33,9 @@ public class ATDExecutor {
     private final List<String> listeners = new ArrayList<>();
     private final List<String> groupsInclude = new ArrayList<>();
     private final List<String> groupsExclude = new ArrayList<>();
+    private static final String ANDROID = "android";
+    private static final String Web = "Web";
+    private static final String IOS = "iOS";
 
     public ATDExecutor(/*DeviceAllocationManager deviceAllocationManager*/) {
       //  this.deviceAllocationManager = deviceAllocationManager;
@@ -45,7 +49,6 @@ public class ATDExecutor {
         String categoryName = CATEGORY.get();
         Set<Method> setOfMethods = getMethods(pack);
         String runnerLevel = RUNNER_LEVEL.get();
-
         if (executionType.equalsIgnoreCase("distribute")) {
             if (runnerLevel != null && runnerLevel.equalsIgnoreCase("class")) {
                 constructXmlSuiteForClassLevelDistributionRunner(test, getTestMethods(setOfMethods),
@@ -105,13 +108,17 @@ public class ATDExecutor {
         suite.setThreadCount(deviceCount);
         suite.setParallel(ParallelMode.CLASSES);
         suite.setVerbose(2);
-        listeners.add("com.appium.manager.AppiumParallelMethodTestListener");
-        listeners.add("com.appium.utils.RetryListener");
+       // listeners.add("com.appium.manager.AppiumParallelMethodTestListener");
+       // listeners.add("com.appium.utils.RetryListener");
         include(listeners, LISTENERS);
         suite.setListeners(listeners);
         XmlTest test = new XmlTest(suite);
         test.setName(categoryName);
-        test.addParameter("device", "");
+        //TODO make them parameterised, read from system prop
+        String platform = getOverriddenStringValue("platform");
+        String platformType = getOverriddenStringValue("platformType");
+        test.addParameter("platformType", platformType);
+        test.addParameter("platformName", platform);
         include(groupsExclude, EXCLUDE_GROUPS);
         include(groupsInclude, INCLUDE_GROUPS);
         test.setIncludedGroups(groupsInclude);
@@ -134,13 +141,17 @@ public class ATDExecutor {
         suite.setDataProviderThreadCount(deviceCount);
         suite.setVerbose(2);
         suite.setParallel(ParallelMode.METHODS);
-        listeners.add("com.appium.manager.AppiumParallelMethodTestListener");
-        listeners.add("com.appium.utils.RetryListener");
+        //listeners.add("com.appium.manager.AppiumParallelMethodTestListener");
+        //listeners.add("com.appium.utils.RetryListener");
         include(listeners, LISTENERS);
         suite.setListeners(listeners);
         CreateGroups createGroups = new CreateGroups(tests, methods, category, suite).invoke();
         List<XmlClass> xmlClasses = createGroups.getXmlClasses();
         XmlTest test = createGroups.getTest();
+        String platform = getOverriddenStringValue("platform");
+        String platformType = getOverriddenStringValue("platformType");
+        test.addParameter("platformType", platformType);
+        test.addParameter("platformName", platform);
         List<XmlClass> writeXml = createGroups.getWriteXml();
         for (XmlClass xmlClass : xmlClasses) {
             writeXml.add(new XmlClass(xmlClass.getName()));
@@ -172,9 +183,10 @@ public class ATDExecutor {
 
         while (iter.hasNext()) {
             url = iter.next();
-            if (url.toString().contains("test-classes")) {
-                break;
-            }
+            break;
+           // if (url.toString().contains("test-classes")) {
+            //    break;
+          //  }
         }
         for (String item : items) {
             newUrl = new URL(url.toString() + item.replaceAll("\\.", "/"));

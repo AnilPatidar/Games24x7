@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.oneframework.runner.TestNgRunner</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.oneframework.runner.TestNgRunner</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.oneframework.runner.html">org.oneframework.runner</a> &gt; TestNgRunner</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">3.013s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">starTest</td>
+<td class="success">3.013s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>...
+... TestNG 6.14.3 by C?dric Beust (cedric@beust.com)
+...
+
+executing command : {}bash -c lsof -nti:4723 | xargs kill -9
+response: {}org.oneframework.utils.CommandLineResponse@23b689ad
+?[35m[Appium]?[39m Welcome to Appium v1.22.3
+?[35m[Appium]?[39m Non-default server args:
+?[35m[Appium]?[39m   sessionOverride: true
+?[35m[Appium]?[39m Appium REST http interface listener started on 0.0.0.0:4723
+?[35m[HTTP]?[39m ?[37m--&gt;?[39m ?[37mGET?[39m ?[37m/wd/hub/status?[39m
+?[35m[HTTP]?[39m ?[90m{}?[39m
+[debug] ?[35m[GENERIC]?[39m Calling AppiumDriver.getStatus() with args: []
+[debug] ?[35m[GENERIC]?[39m Responding to client with driver.getStatus() result: {&quot;build&quot;:{&quot;version&quot;:&quot;1.22.3&quot;}}
+?[35m[HTTP]?[39m ?[37m&lt;-- GET /wd/hub/status ?[39m?[32m200?[39m ?[90m6 ms - 68?[39m
+?[35m[HTTP]?[39m ?[90m?[39m
+TEST SKIP: testSignInOption - testing the signin page visually
+TEST SKIP: testSignUpOption - testing the signup page visually
+TEST FINISH: ATDTest
+FAILED CONFIGURATION: @BeforeMethod setupDriver(&quot;mobile&quot;, &quot;android&quot;, null)
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:148)
+	at org.oneframework.config.AndroidDeviceModel.getAndroidDeviceByName(AndroidDeviceModel.java:32)
+	at org.oneframework.drivers.AndroidDriverBuilder.setupDriver(AndroidDriverBuilder.java:24)
+	at tests.BaseTest.setupMobileDriver(BaseTest.java:53)
+	at tests.BaseTest.setupDriver(BaseTest.java:47)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:458)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:523)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+SKIPPED CONFIGURATION: @AfterMethod stopAppiumServer
+SKIPPED CONFIGURATION: @AfterMethod teardownDriver
+SKIPPED CONFIGURATION: @BeforeMethod setupDriver
+SKIPPED CONFIGURATION: @AfterMethod stopAppiumServer
+SKIPPED CONFIGURATION: @AfterMethod teardownDriver
+SKIPPED: testSignInOption
+         testing the signin page visually
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:148)
+	at org.oneframework.config.AndroidDeviceModel.getAndroidDeviceByName(AndroidDeviceModel.java:32)
+	at org.oneframework.drivers.AndroidDriverBuilder.setupDriver(AndroidDriverBuilder.java:24)
+	at tests.BaseTest.setupMobileDriver(BaseTest.java:53)
+	at tests.BaseTest.setupDriver(BaseTest.java:47)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:458)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:523)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+SKIPPED: testSignUpOption
+         testing the signup page visually
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:148)
+	at org.oneframework.config.AndroidDeviceModel.getAndroidDeviceByName(AndroidDeviceModel.java:32)
+	at org.oneframework.drivers.AndroidDriverBuilder.setupDriver(AndroidDriverBuilder.java:24)
+	at tests.BaseTest.setupMobileDriver(BaseTest.java:53)
+	at tests.BaseTest.setupDriver(BaseTest.java:47)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:458)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:523)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+
+===============================================
+    ATDTest
+    Tests run: 2, Failures: 0, Skips: 2
+    Configuration Failures: 1, Skips: 5
+===============================================
+
+
+===============================================
+ATDSuiteName
+Total tests run: 2, Failures: 0, Skips: 2
+Configuration Failures: 1, Skips: 5
+===============================================
+
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Aug 20, 2023 12:43:19 PM org.oneframework.logger.LoggingManager logMessage
+INFO: Appium server has been started
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.1.1</a> at 20-Aug-2023, 12:43:20 PM</p>
+</div>
+</div>
+</body>
+</html>

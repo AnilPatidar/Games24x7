@@ -5,12 +5,11 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
-public class MainClass {
+public class TestNgRunner {
 
     ATDExecutor executor = new ATDExecutor();
     @Test
     public void starTest() throws Exception {
-        System.out.println("test started");
         executor.constructXMLAndTriggerParallelRunner(new ArrayList<>(),"tests" ,1,"distribute");
     }
 }
