@@ -19,10 +19,8 @@
 <!--    </test>-->
 
     <test name="E2E Test Suite On Android - Pixel" >
-        <parameter name="platformType" value="web"/>
-                <parameter name="platformName" value="firefox"/>
                 <classes>
-                    <class name="tests.HomePageTest"/>
+                    <class name="org.oneframework.runner.TestNgRunner"/>
                 </classes>
     </test>
     <!--<test name="E2E Test Suite On iOS - iPhone6S">-->
