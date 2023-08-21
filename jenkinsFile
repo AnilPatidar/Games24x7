@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-                  label 'local' // Replace 'local' with the label of your Jenkins node
-              }
+    agent {label 'local' }
 
     parameters {
         string(name: 'PARAMETER_1', description: 'First string parameter', defaultValue: '')
