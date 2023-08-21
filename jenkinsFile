@@ -21,8 +21,7 @@ pipeline {
             steps {
                 script {
                   sh "ls -la" // Debug: List workspace content
-                  sh "cd repo && ls -la" // Debug: List contents of the repo directory
-                  sh "cd repo && ./gradlew --version" // Debug: Print Gradle version
+                  sh "./gradlew --version" // Debug: Print Gradle version
                   sh "./gradlew clean test -Pparam1=${params.PARAMETER_1} -Pparam2=${params.PARAMETER_2}"
                 }
             }
