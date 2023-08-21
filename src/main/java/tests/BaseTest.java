@@ -1,5 +1,7 @@
 package tests;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.oneframework.drivers.AndroidDriverBuilder;
 import org.oneframework.appium.AppiumServer;
@@ -7,9 +9,14 @@ import org.oneframework.drivers.IOSDriverBuilder;
 import org.oneframework.drivers.WebDriverBuilder;
 import org.oneframework.enums.PlatformName;
 import org.oneframework.enums.PlatformType;
+import org.oneframework.utils.ADBUtilities;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.oneframework.logger.LoggingManager.logMessage;
@@ -35,6 +42,7 @@ public class BaseTest {
                 logMessage("Appium server has been stopped");
             }
         }
+
     }
 
     @Parameters({"platformType", "platformName", "model"})
@@ -70,7 +78,21 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void teardownDriver() throws IOException {
+    public void teardownDriver(ITestResult result,String platformName) throws IOException {
+        if(!result.isSuccess()) {
+            if(platformName.contains("android")){
+                String testName = result.getMethod().getMethodName();
+                AppiumDriver driver = (AppiumDriver) driverThread.get();
+                String deviceId = (String) driver.getCapabilities().getCapability(MobileCapabilityType.UDID);
+                String logFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".log";
+                ADBUtilities.dumpAdbLogs(deviceId,logFileName);
+                //Screenshot
+                String screenShotFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".png";
+                File screenshotFile = driver.getScreenshotAs(OutputType.FILE);
+                ADBUtilities.dumpScreenShot(screenshotFile,screenShotFileName);
+            }
+        }
+
         driverThread.get().quit();
         logMessage("Driver has been quit from execution");
     }

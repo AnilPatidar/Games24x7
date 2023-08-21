@@ -1,9 +1,9 @@
 package org.oneframework.utils;
 
-import java.nio.file.Path;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 
 import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 
 import static org.oneframework.utils.CommandLineExecutor.exec;
 import static org.oneframework.utils.StringUtils.splitLines;
@@ -29,6 +29,8 @@ public final class ADBUtilities {
     private static final String OS = "ro.build.version.release";
     private static final String DEVICENAME = "ro.product.model";
     private static final String RESOLUTION = "Physical size";
+    private static final String logsFilePath = "/Logs/android/";
+    private static final String screenshotFilePath = "/Screenshot/";
 
 
 
@@ -114,5 +116,23 @@ public final class ADBUtilities {
         }
         return null;
     }
+
+    public static String dumpAdbLogs(@NonNull String deviceId,@NonNull String fileName){
+        String cmd = String.format(
+                "%s -s %s "+"logcat >"+System.getProperty("user.dir")+ logsFilePath +fileName, ADB_EXECUTABLE, deviceId);
+        System.out.println(cmd);
+        CommandLineResponse response = exec(cmd);
+        if (response.getExitCode() == 0) {
+            return response.getStdOut();
+        }
+        return null;
+    }
+
+    public static void dumpScreenShot(File srcFile,String fileName) throws IOException {
+        File destFile=new File(System.getProperty("user.dir")+screenshotFilePath+fileName);
+        FileUtils.copyFile(srcFile,destFile);
+        System.out.println("Screenshot saved at: " + destFile.getAbsolutePath());
+    }
+
 
 }
