@@ -10,10 +10,10 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    def gitRepoUrl = 'https://github.com/yourusername/your-repo.git'
-                    def checkoutDir = "${env.WORKSPACE}/repo"
+                    def gitRepoUrl = 'https://github.com/AnilPatidar/Games24x7.git'
+                    //def checkoutDir = "${env.WORKSPACE}/repo"
 
-                    git branch: 'master', url: gitRepoUrl, credentialsId: 'your-credentials-id'
+                    git branch: 'master', url: gitRepoUrl, credentialsId: 'github-cred'
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Build and Test') {
             steps {
                 script {
-                    sh "cd repo && ./gradlew clean test -Pparam1=${params.PARAMETER_1} -Pparam2=${params.PARAMETER_2}"
+                    sh "./gradlew clean test -Pparam1=${params.PARAMETER_1} -Pparam2=${params.PARAMETER_2}"
                 }
             }
         }
