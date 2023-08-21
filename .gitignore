@@ -40,3 +40,4 @@ replay_pid*
 
 test-output
 test-output-tests
+target/parallel.xml
