@@ -141,7 +141,7 @@ public class ATDExecutor {
         suite.setDataProviderThreadCount(deviceCount);
         suite.setVerbose(2);
         suite.setParallel(ParallelMode.METHODS);
-       // listeners.add("com.epam.reportportal.testng.ReportPortalTestNGListener");
+        listeners.add("com.epam.reportportal.testng.ReportPortalTestNGListener");
         //listeners.add("com.appium.utils.RetryListener");
         include(listeners, LISTENERS);
         suite.setListeners(listeners);

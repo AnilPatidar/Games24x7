@@ -12,14 +12,14 @@ import java.util.logging.Logger;
 @Listeners({TestListener.class})
 public class HomePageTest extends BaseTest {
 
-   // private static Logger LogManager;
-   // private static final Logger LOGGER = LogManager.getLogger(String.valueOf(HomePageTest.class));
+   private static Logger LogManager;
+    private static final Logger LOGGER = LogManager.getLogger(String.valueOf(HomePageTest.class));
 
     SoftAssert softAssert = new SoftAssert();
 
     @Test(description = "testing the signin page visually")
     public void testSignInOption() throws Exception {
-       // LOGGER.info("Running testSignInOption");
+        LOGGER.info("Running testSignInOption");
         System.out.println("Running testSignInOption");
         HomePage homePage = new HomePage(driverThread.get());
         softAssert.assertTrue(new ImageComparator(driverThread.get()).compare("homePage"), "homePage baseline image isn't matching with actual image.");

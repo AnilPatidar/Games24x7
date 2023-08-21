@@ -24,7 +24,7 @@ import static org.oneframework.logger.LoggingManager.logMessage;
 public class ImageComparator extends DeviceConfig {
     WebDriver driver;
     public static boolean COMPARE = false;
-    public static String MODE;
+    public static String MODE = "functional";
     String baselineImageDirFullPath;
 
     public ImageComparator(WebDriver driver) {
