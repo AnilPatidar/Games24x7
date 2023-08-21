@@ -5,6 +5,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.oneframework.drivers.AndroidDriverBuilder;
 import org.oneframework.appium.AppiumServer;
+import org.oneframework.drivers.AndroidDriverBuilder;
 import org.oneframework.drivers.IOSDriverBuilder;
 import org.oneframework.drivers.WebDriverBuilder;
 import org.oneframework.enums.PlatformName;
@@ -42,7 +43,6 @@ public class BaseTest {
                 logMessage("Appium server has been stopped");
             }
         }
-
     }
 
     @Parameters({"platformType", "platformName", "model"})

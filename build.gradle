@@ -14,10 +14,12 @@ repositories {
     mavenCentral()
 }
 
+
+
 dependencies {
     implementation group: 'io.appium', name: 'java-client', version: '7.1.0'
     // https://mvnrepository.com/artifact/org.testng/testng
-    testImplementation group: 'org.testng', name: 'testng', version: '7.1.0'
+    compileOnly group: 'org.testng', name: 'testng', version: '7.1.0'
 
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.3.0'
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
@@ -31,8 +33,26 @@ dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.0'
     implementation group: 'org.json', name: 'json', version: '20190722'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.0'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
 
 
+}
+
+compileJava {options.encoding = "UTF-8"}
+
+
+
+test{ // we define a task with name ‘smokeTests’
+    print 'Running the tests'
+    testLogging.showStandardStreams = true
+
+    useTestNG() {
+        suites "${System.getProperty('suiteXmlFile', 'src/test/resources/testng.xml')}"
+    }
+
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
 }
 
 jar {
@@ -45,3 +65,4 @@ jar {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
+

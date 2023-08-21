@@ -4,7 +4,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import org.oneframework.utils.CommandLineExecutor;
-import org.openqa.selenium.WebDriver;
+import org.oneframework.utils.ReadSymbolicLinksUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,8 +23,9 @@ public class AppiumServer {
         int port = c.getAndAdd(1);
         portAtomic.set(port);
         CommandLineExecutor.killProcessListeningAtPort(port);
+        String appiumPath=new ReadSymbolicLinksUtil().getRealPathOfAppium();
         AppiumServiceBuilder builder = new AppiumServiceBuilder()
-                .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
+                .withAppiumJS(new File(appiumPath))
                 .usingPort(port)
                 .withArgument(GeneralServerFlag.SESSION_OVERRIDE);
         driverAppiumServer.set(builder.build());

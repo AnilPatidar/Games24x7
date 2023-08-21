@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'PARAMETER_1', description: 'First string parameter', defaultValue: '')
+        string(name: 'PARAMETER_2', description: 'Second string parameter', defaultValue: '')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    def gitRepoUrl = 'https://github.com/AnilPatidar/Games24x7.git'
+                    //def checkoutDir = "${env.WORKSPACE}/repo"
+
+                    git branch: 'master', url: gitRepoUrl, credentialsId: 'github-cred'
+                }
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                script {
+                    sh "./gradlew clean test -Pparam1=${params.PARAMETER_1} -Pparam2=${params.PARAMETER_2}"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            junit '**/build/test-results/test/*.xml'
+        }
+    }
+}
