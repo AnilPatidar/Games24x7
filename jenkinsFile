@@ -1,5 +1,5 @@
 pipeline {
-    agent agent-local
+    agent local
 
     parameters {
         string(name: 'PARAMETER_1', description: 'First string parameter', defaultValue: '')
