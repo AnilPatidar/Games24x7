@@ -62,8 +62,6 @@ compileJava {options.encoding = "UTF-8"}
 
 test{ // we define a task with name ‘smokeTests’
     print 'Running the tests'
-    def platformType = System.getenv("platformType")
-    def platformName = System.getenv("platformName")
     testLogging.showStandardStreams = true
 
     useTestNG() {
