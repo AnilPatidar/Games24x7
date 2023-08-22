@@ -15,8 +15,10 @@ Access Jenkin
 http://localhost:8081/
 
 Important docker documentation :
-
+Important links:
 https://kodekloud.com/blog/docker-create-image-from-container/#
+https://github.com/jenkinsci/docker/blob/master/README.md
+https://docs.docker.com/engine/reference/commandline/tag/
 
 Copy gradle in the image
 cd /Users/anil-patidar/Downloads/
