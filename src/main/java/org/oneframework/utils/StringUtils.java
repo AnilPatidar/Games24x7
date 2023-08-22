@@ -47,7 +47,7 @@ public class StringUtils {
     public static String pojoToJson(@NonNull Object obj) {
         try {
             return MAPPER.writeValueAsString(obj);
-        } catch (JsonProcessingException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
