@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    //{label 'local' }
 
     parameters {
         string(name: 'PARAMETER_1', description: 'First string parameter', defaultValue: '')
@@ -12,8 +13,7 @@ pipeline {
                 script {
                     def gitRepoUrl = 'https://github.com/AnilPatidar/Games24x7.git'
                     //def checkoutDir = "${env.WORKSPACE}/repo"
-
-                    git branch: 'master', url: gitRepoUrl, credentialsId: 'github-cred'
+                    git branch: 'dynamic-testng', url: gitRepoUrl, credentialsId: 'github'
                 }
             }
         }
@@ -21,7 +21,8 @@ pipeline {
         stage('Build and Test') {
             steps {
                 script {
-                    sh "./gradlew clean test -Pparam1=${params.PARAMETER_1} -Pparam2=${params.PARAMETER_2}"
+                  sh "ls -la" // Debug: List workspace content
+                  sh "/var/gradle/bin/gradle clean test -Pparam1=${params.PARAMETER_1} -Pparam2=${params.PARAMETER_2}"
                 }
             }
         }

@@ -51,8 +51,8 @@ public class ATDExecutor {
         String runnerLevel = RUNNER_LEVEL.get();
         if (executionType.equalsIgnoreCase("distribute")) {
             if (runnerLevel != null && runnerLevel.equalsIgnoreCase("class")) {
-                constructXmlSuiteForClassLevelDistributionRunner(test, getTestMethods(setOfMethods),
-                        suiteName, categoryName, deviceCount);
+             /*   constructXmlSuiteForClassLevelDistributionRunner(test, getTestMethods(setOfMethods),
+                        suiteName, categoryName, deviceCount);*/
             } else {
                 constructXmlSuiteForMethodLevelDistributionRunner(test,
                         getTestMethods(setOfMethods), suiteName, categoryName, deviceCount);
@@ -100,7 +100,7 @@ public class ATDExecutor {
         return suite;
     }*/
 
-    public XmlSuite constructXmlSuiteForClassLevelDistributionRunner(List<String> tests,
+   /* public XmlSuite constructXmlSuiteForClassLevelDistributionRunner(List<String> tests,
                    Map<String, List<Method>> methods,
                    String suiteName, String categoryName, int deviceCount) {
         XmlSuite suite = new XmlSuite();
@@ -127,7 +127,7 @@ public class ATDExecutor {
         test.setXmlClasses(xmlClasses);
         writeTestNGFile(suite);
         return suite;
-    }
+    }*/
 
 
     //We need this
@@ -136,7 +136,6 @@ public class ATDExecutor {
                              String category, int deviceCount) {
         include(groupsInclude, INCLUDE_GROUPS);
         XmlSuite suite = new XmlSuite();
-        suite.setName(suiteName);
         suite.setThreadCount(deviceCount);
         suite.setDataProviderThreadCount(deviceCount);
         suite.setVerbose(2);
@@ -145,17 +144,68 @@ public class ATDExecutor {
         //listeners.add("com.appium.utils.RetryListener");
         include(listeners, LISTENERS);
         suite.setListeners(listeners);
-        CreateGroups createGroups = new CreateGroups(tests, methods, category, suite).invoke();
-        List<XmlClass> xmlClasses = createGroups.getXmlClasses();
-        XmlTest test = createGroups.getTest();
-        String platform = getOverriddenStringValue("platform");
-        String platformType = getOverriddenStringValue("platformType");
-        test.addParameter("platformType", platformType);
-        test.addParameter("platformName", platform);
-        List<XmlClass> writeXml = createGroups.getWriteXml();
-        for (XmlClass xmlClass : xmlClasses) {
-            writeXml.add(new XmlClass(xmlClass.getName()));
-            test.setClasses(writeXml);
+
+        String platforms = getOverriddenStringValue("platform");
+        String platformTypes = getOverriddenStringValue("platformType");
+
+        //platformType=mobile,web;platform=both,chrome
+        //platformType=mobile;platform=android,ios
+        //platformType=web;platform=chrome,firefox
+        //platformType=mobile,web;platform=android,firefox
+
+        List<String> mobilePlatforms= new ArrayList<>();
+        if(platformTypes.contains("mobile")){
+            if(platforms.contains("both")){
+                mobilePlatforms.add("android");
+                mobilePlatforms.add("ios");
+            }
+            if(platforms.contains("ios")){
+                mobilePlatforms.add("ios");
+            }
+            if(platforms.contains("android")){
+                mobilePlatforms.add("android");
+            }
+        }
+        List<String> webPlatforms= new ArrayList<>();
+        if(platformTypes.contains("web")){
+            if(platforms.contains("chrome")){
+                webPlatforms.add("chrome");
+            }
+            if(platforms.contains("firefox")){
+                webPlatforms.add("firefox");
+            }
+        }
+
+        for(int i=0;i<mobilePlatforms.size();i++){
+                CreateGroups createGroups = new CreateGroups(tests, methods, category, suite).invoke();
+                List<XmlClass> xmlClasses = createGroups.getXmlClasses();
+                XmlTest test = createGroups.getTest();
+                test.setName("test "+i);
+               // String platform = getOverriddenStringValue("platform");
+               // String platformType = getOverriddenStringValue("platformType");
+                test.addParameter("platformType", "mobile");
+                test.addParameter("platformName", mobilePlatforms.get(i));
+                List<XmlClass> writeXml = createGroups.getWriteXml();
+                for (XmlClass xmlClass : xmlClasses) {
+                    writeXml.add(new XmlClass(xmlClass.getName()));
+                    test.setClasses(writeXml);
+                }
+        }
+
+        for(int i=0;i<webPlatforms.size();i++){
+            CreateGroups createGroups = new CreateGroups(tests, methods, category, suite).invoke();
+            List<XmlClass> xmlClasses = createGroups.getXmlClasses();
+            XmlTest test = createGroups.getTest();
+            test.setName("test "+i);
+            // String platform = getOverriddenStringValue("platform");
+            // String platformType = getOverriddenStringValue("platformType");
+            test.addParameter("platformType", "web");
+            test.addParameter("platformName", webPlatforms.get(i));
+            List<XmlClass> writeXml = createGroups.getWriteXml();
+            for (XmlClass xmlClass : xmlClasses) {
+                writeXml.add(new XmlClass(xmlClass.getName()));
+                test.setClasses(writeXml);
+            }
         }
         writeTestNGFile(suite);
         return suite;
@@ -285,7 +335,7 @@ public class ATDExecutor {
             xmlClasses = writeXmlClass(tests, methods);
             test = new XmlTest(suite);
             test.setName(category);
-            test.addParameter("device", "");
+            //test.addParameter("device", "");
             include(groupsExclude, EXCLUDE_GROUPS);
             test.setIncludedGroups(groupsInclude);
             test.setExcludedGroups(groupsExclude);
