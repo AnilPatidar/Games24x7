@@ -11,7 +11,7 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.FilterableRequestSpecification;
-import org.testng.Assert;
+
 
 import static io.restassured.config.RedirectConfig.redirectConfig;
 

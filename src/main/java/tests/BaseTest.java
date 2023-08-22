@@ -13,6 +13,8 @@ import org.oneframework.enums.PlatformName;
 import org.oneframework.enums.PlatformType;
 import org.oneframework.utils.ADBUtilities;
 import org.openqa.selenium.OutputType;
+import org.oneframework.logger.LoggingManager;
+import org.oneframework.pageObjects.SignInPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -24,7 +26,7 @@ import static org.oneframework.logger.LoggingManager.logMessage;
 
 public class BaseTest {
 
-
+    private static final LoggingManager log = new LoggingManager(BaseTest.class.getName());
     public static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
 
     @Parameters({"platformType", "platformName"})
@@ -40,7 +42,7 @@ public class BaseTest {
     public void stopAppiumServer(String platformType, @Optional String platformName) throws IOException {
         if (platformType.equalsIgnoreCase(PlatformType.MOBILE.toString())) {
                 if (AppiumServer.getAppiumDriverLocalService() != null || AppiumServer.getAppiumDriverLocalService().isRunning()) {
-                logMessage("Appium server has been stopped");
+                log.info("Appium server has been stopped");
             }
         }
     }
@@ -59,12 +61,13 @@ public class BaseTest {
     }
 
     public WebDriver setupMobileDriver(String platformName, String model) throws IOException {
+        model = "realme";
         if (platformName.equalsIgnoreCase(PlatformName.ANDROID.toString())) {
             return new AndroidDriverBuilder().setupDriver(model);
         } else if (platformName.equalsIgnoreCase(PlatformName.IOS.toString())) {
             return new IOSDriverBuilder().setupDriver(model);
         }
-        logMessage(model + " driver not has been created for execution");
+        log.info(model + " driver not has been created for execution");
         return null;
     }
 
@@ -74,7 +77,7 @@ public class BaseTest {
         } else if (platformName.equalsIgnoreCase(PlatformName.FIREFOX.toString())) {
             return new WebDriverBuilder().setupDriver(platformName);
         }
-        logMessage(platformName + " driver has not been created for execution");
+        log.info(platformName + " driver has not been created for execution");
         return null;
     }
 
@@ -99,14 +102,14 @@ public class BaseTest {
         }
 
         driverThread.get().quit();
-        logMessage("Driver has been quit from execution");
+        log.info("Driver has been quit from execution");
     }
 
 
 
     private void killExistingAppiumProcess() throws IOException {
         Runtime.getRuntime().exec("killall node");
-        logMessage("Killing existing appium process");
+        log.info("Killing existing appium process");
     }
 
     public static WebDriver getDriver() {

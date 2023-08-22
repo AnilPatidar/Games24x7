@@ -4,6 +4,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.apache.commons.io.FileUtils;
 import org.oneframework.config.DeviceConfig;
+import org.oneframework.drivers.IOSDriverBuilder;
+import org.oneframework.logger.LoggingManager;
 import org.oneframework.utils.FileUtility;
 import org.openqa.selenium.WebDriver;
 import ru.yandex.qatools.ashot.AShot;
@@ -19,13 +21,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static org.oneframework.logger.LoggingManager.logMessage;
-
 public class ImageComparator extends DeviceConfig {
     WebDriver driver;
     public static boolean COMPARE = false;
-    public static String MODE;
+    public static String MODE = "functional";
     String baselineImageDirFullPath;
+    private static final LoggingManager log = new LoggingManager(ImageComparator.class.getName());
 
     public ImageComparator(WebDriver driver) {
         this.driver = driver;
@@ -37,7 +38,7 @@ public class ImageComparator extends DeviceConfig {
         File expectedImageFile = FileUtils.getFile(FileUtility.getFile(baselineImageDirFullPath + imageName + ".png").getAbsolutePath());
         BufferedImage expectedImage = ImageIO.read(expectedImageFile);
         ImageIO.write(expectedImage, "png", expectedImageFile);
-        logMessage("Retrieving the baseline image " + imageName + " from " + baselineImageDirFullPath);
+        log.info("Retrieving the baseline image " + imageName + " from " + baselineImageDirFullPath);
         return expectedImage;
     }
 
@@ -56,7 +57,7 @@ public class ImageComparator extends DeviceConfig {
         }
         ImageIO.write(image, "png", imageFile);
         FileUtility.copyFileToDirectory(imageFile, new File(baselineImageDirFullPath));
-        logMessage("Capturing the image " + imageName + " into local baselineImages directory " + baselineImageDirFullPath);
+        log.info("Capturing the image " + imageName + " into local baselineImages directory " + baselineImageDirFullPath);
         FileUtility.forceDelete(imageFile);
         return image;
     }
@@ -66,7 +67,7 @@ public class ImageComparator extends DeviceConfig {
         File diffImageFile = new File(imageName + "_diffImage.png");
         ImageIO.write(diffImage, "png", diffImageFile);
         FileUtility.copyFileToDirectory(diffImageFile, new File(baselineImageDirFullPath));
-        logMessage("Saving the difference image into " + baselineImageDirFullPath);
+        log.info("Saving the difference image into " + baselineImageDirFullPath);
         FileUtility.forceDelete(diffImageFile);
     }
 
@@ -81,7 +82,7 @@ public class ImageComparator extends DeviceConfig {
                 expectedImage = getBaselineImage(imageName);
                 actualImage = captureActualImage(imageName);
                 diffImage = new ImageDiffer().makeDiff(expectedImage, actualImage);
-                logMessage("Comparing the expected baseline image with actual image");
+                log.info("Comparing the expected baseline image with actual image");
                 if (diffImage.getDiffSize() > 0) {
                     createDiffImageAs(diffImage, imageName);
                     imageMatchFlag = false;
