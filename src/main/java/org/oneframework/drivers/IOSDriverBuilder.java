@@ -4,6 +4,7 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.oneframework.config.DeviceConfig;
 import org.oneframework.config.IOSDeviceModel;
+import org.oneframework.logger.LoggingManager;
 import org.oneframework.utils.FileUtility;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -11,16 +12,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import static org.oneframework.logger.LoggingManager.logMessage;
 
 public class IOSDriverBuilder extends DeviceConfig {
 
     IOSDriver driver;
+    private static final LoggingManager log = new LoggingManager(IOSDriverBuilder.class.getName());
 
     public IOSDriver setupDriver(String model) throws IOException {
         DesiredCapabilities iosCapabilities = new DesiredCapabilities();
         IOSDeviceModel device = readIOSDeviceConfig().getIOSDeviceByName(model);
-        logMessage("Received the " + model + " device configuration for execution");
+        log.info("Received the " + model + " device configuration for execution");
         setExecutionPlatform(model);
 
         iosCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device.getDeviceName());
@@ -32,7 +33,7 @@ public class IOSDriverBuilder extends DeviceConfig {
         iosCapabilities.setCapability(MobileCapabilityType.APP, FileUtility.getFile(device.getApp()).getAbsolutePath());
         driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), iosCapabilities);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        logMessage("IOS driver has been created for the " + model + " device");
+        log.info("IOS driver has been created for the " + model + " device");
         return driver;
     }
 }

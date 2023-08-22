@@ -3,6 +3,8 @@ package org.oneframework.appium;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
+import org.oneframework.logger.LoggingManager;
+import org.oneframework.pageObjects.SignInPage;
 import org.oneframework.utils.CommandLineExecutor;
 import org.oneframework.utils.ReadSymbolicLinksUtil;
 
@@ -10,9 +12,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.oneframework.logger.LoggingManager.logMessage;
 
 public class AppiumServer {
+
+    private static final LoggingManager log = new LoggingManager(AppiumServer.class.getName());
 
     public static AtomicInteger c = new AtomicInteger(4723);
     private static ThreadLocal<AppiumDriverLocalService> driverAppiumServer= new ThreadLocal<>();
@@ -30,12 +33,12 @@ public class AppiumServer {
                 .withArgument(GeneralServerFlag.SESSION_OVERRIDE);
         driverAppiumServer.set(builder.build());
         driverAppiumServer.get().start();
-        logMessage("Appium server has been started");
+        log.info("Appium server has been started");
     }
 
     public static void stop() throws IOException {
         driverAppiumServer.get().stop();
-        logMessage("Appium server has been stopped");
+        log.info("Appium server has been stopped");
     }
 
     public static AppiumDriverLocalService getAppiumDriverLocalService(){
