@@ -19,6 +19,7 @@ Important links:
 https://kodekloud.com/blog/docker-create-image-from-container/#
 https://github.com/jenkinsci/docker/blob/master/README.md
 https://docs.docker.com/engine/reference/commandline/tag/
+https://hub.docker.com/r/jenkins/jenkins
 
 Copy gradle in the image
 cd /Users/anil-patidar/Downloads/
