@@ -11,18 +11,15 @@ import org.oneframework.drivers.IOSDriverBuilder;
 import org.oneframework.drivers.WebDriverBuilder;
 import org.oneframework.enums.PlatformName;
 import org.oneframework.enums.PlatformType;
+import org.oneframework.logger.LoggingManager;
 import org.oneframework.utils.ADBUtilities;
 import org.openqa.selenium.OutputType;
-import org.oneframework.logger.LoggingManager;
-import org.oneframework.pageObjects.SignInPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
-
-import static org.oneframework.logger.LoggingManager.logMessage;
 
 public class BaseTest {
 
@@ -91,13 +88,16 @@ public class BaseTest {
                 String deviceId = device.getDeviceName();
                 String logFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".log";
                 ADBUtilities.dumpAdbLogs(logFileName, (AndroidDriver<AndroidElement>) driver);
+                log.info("Logs path:"+System.getProperty("user.dir")+ "/Logs/android/"+logFileName );
                 //Screenshot
                 String screenShotFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".png";
                 File screenshotFile = driver.getScreenshotAs(OutputType.FILE);
                 ADBUtilities.dumpScreenShot(screenshotFile,screenShotFileName);
+                log.info("Screenshot path:"+System.getProperty("user.dir")+ "/Screenshot/"+screenShotFileName );
                 //Video
                 String videoFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".mp4";
                 ADBUtilities.dumpVideo((AndroidDriver<AndroidElement>) driver,videoFileName);
+                log.info("Video path:"+System.getProperty("user.dir")+ "/Video/"+videoFileName );
             }
         }
 
