@@ -3,8 +3,13 @@ pipeline {
     //{label 'local' }
 
     parameters {
-        string(name: 'PARAMETER_1', description: 'First string parameter', defaultValue: '')
-        string(name: 'PARAMETER_2', description: 'Second string parameter', defaultValue: '')
+        string(name: 'platformType', description: 'mobile,web', defaultValue: 'mobile')
+        string(name: 'platform', description: 'android,ios,CHROME', defaultValue: 'both')
+    }
+
+    environment {
+            platformType = "${params.platformType}"
+            platform = "${params.platform}"
     }
 
     stages {
