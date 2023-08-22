@@ -4,6 +4,7 @@ package org.oneframework.logger;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.epam.reportportal.service.ReportPortal;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.ThreadContext;
@@ -11,6 +12,7 @@ import org.oneframework.config.ConfigUtils;
 import org.oneframework.reports.ExtentListener;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class LoggerUtil implements ILogger {
@@ -26,7 +28,6 @@ public class LoggerUtil implements ILogger {
     return LOG;
   }
 
-  public static void main(String[] args) {}
 
   public void info(String text) {
 
@@ -110,6 +111,7 @@ public class LoggerUtil implements ILogger {
 
   public void debug(String text) {
     Log.debug(text);
+    ReportPortal.emitLog(text, "DEBUG", new Date());
     if (ExtentListener.getInstance() != null) ExtentListener.getInstance().info(text);
   }
 

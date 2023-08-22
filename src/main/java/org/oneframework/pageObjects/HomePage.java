@@ -4,15 +4,16 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.oneframework.helpers.Page;
+import org.oneframework.imageCompare.ImageComparator;
+import org.oneframework.logger.LoggingManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.oneframework.logger.LoggingManager.logMessage;
 
 public class HomePage extends Page {
-
+    private static final LoggingManager log = new LoggingManager(HomePage.class.getName());
     WebDriver driver;
 
     @FindBy(xpath = "//a[@title='Log In'][1]")
@@ -28,7 +29,7 @@ public class HomePage extends Page {
     public HomePage(WebDriver driver) throws InterruptedException {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        logMessage("Initializing the "+this.getClass().getSimpleName()+" elements");
+        log.info("Initializing the "+this.getClass().getSimpleName()+" elements");
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         Thread.sleep(1000);
     }
@@ -36,13 +37,13 @@ public class HomePage extends Page {
     public SignInPage chooseSignInOption() throws Exception {
         clickElement(eleSignInBtn);
         new SignInPage(driver).clickOnSignInTitle();
-        logMessage("Chosen signIn option");
+        log.info("Chosen signIn option");
         return new SignInPage(driver);
     }
 
     public SignUpPage chooseSignUpOption() throws Exception {
         clickElement(eleSignUpBtn);
-        logMessage("Chosen signUp option");
+        log.info("Chosen signUp option");
         return new SignUpPage(driver);
     }
 
