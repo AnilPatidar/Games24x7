@@ -1,10 +1,11 @@
 package tests;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
-import io.appium.java_client.service.local.AppiumDriverLocalService;
-import org.oneframework.drivers.AndroidDriverBuilder;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import org.oneframework.appium.AppiumServer;
+import org.oneframework.config.AndroidDeviceModel;
+import org.oneframework.config.DeviceConfig;
 import org.oneframework.drivers.AndroidDriverBuilder;
 import org.oneframework.drivers.IOSDriverBuilder;
 import org.oneframework.drivers.WebDriverBuilder;
@@ -13,7 +14,6 @@ import org.oneframework.enums.PlatformType;
 import org.oneframework.utils.ADBUtilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -48,6 +48,7 @@ public class BaseTest {
     @Parameters({"platformType", "platformName", "model"})
     @BeforeMethod
     public void setupDriver(String platformType, String platformName, @Optional String model) throws IOException {
+        model="pixel";
         if (platformType.equalsIgnoreCase(PlatformType.WEB.toString())) {
             driverThread.set(setupWebDriver(platformName));
             driverThread.get().get("https://www.wordpress.com");
@@ -78,18 +79,22 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void teardownDriver(ITestResult result,String platformName) throws IOException {
+    public void teardownDriver(ITestResult result) throws IOException, InterruptedException {
         if(!result.isSuccess()) {
-            if(platformName.contains("android")){
+            if(System.getenv("platform").contains("android")){
                 String testName = result.getMethod().getMethodName();
                 AppiumDriver driver = (AppiumDriver) driverThread.get();
-                String deviceId = (String) driver.getCapabilities().getCapability(MobileCapabilityType.UDID);
+                AndroidDeviceModel device = DeviceConfig.readAndroidDeviceConfig().getAndroidDeviceByName("pixel");
+                String deviceId = device.getDeviceName();
                 String logFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".log";
-                ADBUtilities.dumpAdbLogs(deviceId,logFileName);
+                ADBUtilities.dumpAdbLogs(logFileName, (AndroidDriver<AndroidElement>) driver);
                 //Screenshot
                 String screenShotFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".png";
                 File screenshotFile = driver.getScreenshotAs(OutputType.FILE);
                 ADBUtilities.dumpScreenShot(screenshotFile,screenShotFileName);
+                //Video
+                String videoFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".mp4";
+                ADBUtilities.dumpVideo((AndroidDriver<AndroidElement>) driver,videoFileName);
             }
         }
 
