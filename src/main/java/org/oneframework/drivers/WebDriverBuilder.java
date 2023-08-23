@@ -5,8 +5,10 @@ import org.oneframework.config.DeviceConfig;
 import org.oneframework.enums.PlatformName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverBuilder extends DeviceConfig {
@@ -16,7 +18,10 @@ public class WebDriverBuilder extends DeviceConfig {
     public WebDriver setupDriver(String platformName) {
         if (platformName.equalsIgnoreCase(PlatformName.CHROME.name())) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("/Users/jitu.patel/Library/Application Support/Google/Chrome/Default");
+            System.setProperty("webdriver.chrome.driver", "/Users/jitu-patel/github/Games24x7/driver/chromedriver");
+            driver = new ChromeDriver(chromeOptions);
         } else if (platformName.equalsIgnoreCase(PlatformName.FIREFOX.name())) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();

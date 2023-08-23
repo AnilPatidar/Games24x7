@@ -50,7 +50,7 @@ public class BaseTest {
         model="pixel";
         if (platformType.equalsIgnoreCase(PlatformType.WEB.toString())) {
             driverThread.set(setupWebDriver(platformName));
-            driverThread.get().get("https://www.wordpress.com");
+            driverThread.get().get("https://twitter.com/compose/tweet");
         } else if (platformType.equalsIgnoreCase(PlatformType.MOBILE.toString())) {
             AppiumServer.start();
             driverThread.set(setupMobileDriver(platformName, model));

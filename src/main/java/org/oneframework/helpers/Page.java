@@ -19,4 +19,7 @@ public class Page {
         element.sendKeys(value);
     }
 
+    public void clearTest (WebElement element) {
+        element.clear();
+    }
 }

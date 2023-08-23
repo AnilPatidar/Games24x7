@@ -26,6 +26,13 @@ public class HomePage extends Page {
     @iOSXCUITFindBy(id = "Sign up for WordPress.com Button")
     private WebElement eleSignUpBtn;
 
+
+
+    @FindBy(xpath = "//a[@data-testid='SideNav_NewTweet_Button']")
+    @AndroidFindBy(id = "create_site_button")
+    @iOSXCUITFindBy(id = "Sign up for WordPress.com Button")
+    private WebElement postButton;
+
     public HomePage(WebDriver driver) throws InterruptedException {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -34,17 +41,13 @@ public class HomePage extends Page {
         Thread.sleep(1000);
     }
 
-    public SignInPage chooseSignInOption() throws Exception {
-        clickElement(eleSignInBtn);
-        new SignInPage(driver).clickOnSignInTitle();
-        log.info("Chosen signIn option");
-        return new SignInPage(driver);
+
+    public void postTweet(String text){
+        clickElement(postButton);
+
+
     }
 
-    public SignUpPage chooseSignUpOption() throws Exception {
-        clickElement(eleSignUpBtn);
-        log.info("Chosen signUp option");
-        return new SignUpPage(driver);
-    }
+
 
 }
