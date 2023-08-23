@@ -12,6 +12,37 @@ public class AndroidDeviceModel {
     private String app;
     private String name;
     private boolean reset;
+
+    public String getAutoGrantPermissions() {
+        return autoGrantPermissions;
+    }
+
+    public void setAutoGrantPermissions(String autoGrantPermissions) {
+        this.autoGrantPermissions = autoGrantPermissions;
+    }
+
+    private String autoGrantPermissions;
+
+    public boolean isFullReset() {
+        return fullReset;
+    }
+
+    public void setFullReset(boolean fullReset) {
+        this.fullReset = fullReset;
+    }
+
+    private boolean fullReset;
+
+    public boolean isNoReset() {
+        return noReset;
+    }
+
+    public void setNoReset(boolean noReset) {
+        this.noReset = noReset;
+    }
+
+    private boolean noReset;
+
     private AndroidDeviceModel[] androidDeviceModels;
 
     public String getName() {
