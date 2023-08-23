@@ -15,6 +15,11 @@ import org.openqa.selenium.support.PageFactory;
 public class SignUpPage extends Page {
 
     private static final LoggingManager log = new LoggingManager(SignUpPage.class.getName());
+
+    @FindBy(xpath = "//a[@data-testid='loginButton']")
+    private WebElement signIn;
+
+
     @FindBy(xpath = "//div[@class='login__form-header']")
     @AndroidFindBy(id = "label")
     @iOSXCUITFindBy(id = "Log in to WordPress.com using an email address to manage all your WordPress sites.")
@@ -26,14 +31,17 @@ public class SignUpPage extends Page {
     @FindBy(xpath ="//input[@dir='auto']")
     private WebElement phoneNumber;
 
-    @FindBy(xpath ="/span[text()='Next']")
+    @FindBy(xpath ="//span[text()='Next']")
     private WebElement nextButton;
 
-    @FindBy(xpath ="//input[@name='password']")
-    private WebElement passwordButton;
+    @FindBy(xpath ="//input[@data-testid='ocfEnterTextTextInput']")
+    private WebElement userName;
 
+    @FindBy(xpath ="//input[@type='password']")
+    private WebElement password;
 
-    private WebElement loginButton;
+    @FindBy(xpath ="//div[@data-testid='LoginForm_Login_Button']")
+    private WebElement login;
 
 
     WebDriver driver;
@@ -50,12 +58,23 @@ public class SignUpPage extends Page {
         return getText(elePageTitle);
     }
 
-    public void login(String email, String password){
-
+    public void login(String email, String username,String passwordCode){
+        clickElement(signIn);
         clickElement(phoneNumber);
         enterText(phoneNumber,email);
-        clickElement(nextButton);
-        enterText(passwordButton,password);
+        if(isDisplayed(nextButton)) {
+            clickElement(nextButton);
+        }
+        enterText(userName,username);
+        if(isDisplayed(nextButton)) {
+            clickElement(nextButton);
+        }
+        enterText(password,passwordCode);
+
+        if(isDisplayed(login)) {
+            clickElement(login);
+        }
+
     }
 
 }

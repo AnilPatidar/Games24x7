@@ -3,8 +3,8 @@
     <ExternalSystemSettings>
       <option name="env">
         <map>
-          <entry key="platform" value="android" />
-          <entry key="platformType" value="mobile" />
+          <entry key="platform" value="chrome" />
+          <entry key="platformType" value="web" />
         </map>
       </option>
       <option name="executionName" />
