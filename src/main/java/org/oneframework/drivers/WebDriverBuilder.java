@@ -19,8 +19,9 @@ public class WebDriverBuilder extends DeviceConfig {
         if (platformName.equalsIgnoreCase(PlatformName.CHROME.name())) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("/Users/jitu.patel/Library/Application Support/Google/Chrome/Default");
-            System.setProperty("webdriver.chrome.driver", "/Users/jitu-patel/github/Games24x7/driver/chromedriver");
+            String path = System.getProperty("user.dir");
+            chromeOptions.addArguments("/Users/himani-sharma/Library/Application Support/Google/Chrome/Default");
+            System.setProperty("webdriver.chrome.driver", "/Users/himani-sharma/Documents/Hackathon2023/Games24x7/driver/chromedriver");
             driver = new ChromeDriver(chromeOptions);
         } else if (platformName.equalsIgnoreCase(PlatformName.FIREFOX.name())) {
             WebDriverManager.firefoxdriver().setup();
