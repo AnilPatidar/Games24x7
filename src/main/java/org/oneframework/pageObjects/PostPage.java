@@ -26,7 +26,7 @@ public class PostPage extends Page {
     @FindBy(xpath = "//a[@data-testid='SideNav_NewTweet_Button']")
     private WebElement postFinalButton;
 
-    @FindBy(xpath = "//div[@class='public-DraftStyleDefault-block public-DraftStyleDefault-ltr' and @data-offset-key='82on5-0-0']")
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[3]/div[2]/div[1]/div/div/div/div[1]/div[2]/div/div/div/div/div/div/div[2]/div/div/div/div/label/div[1]/div/div/div/div/div/div[2]/div")
     private WebElement textArea;
 
 
