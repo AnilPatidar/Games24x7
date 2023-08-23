@@ -17,7 +17,7 @@ public class HomePageTest extends BaseTest {
 
     SoftAssert softAssert = new SoftAssert();
 
-    @Test(description = "testing the signin page visually", enabled = false)
+    @Test(description = "testing the signin page visually", enabled = true)
     public void testSignInOption() throws Exception {
         // Assert.assertTrue(false);
         log.debug("Running testSignInOption");
@@ -30,7 +30,7 @@ public class HomePageTest extends BaseTest {
     }
 
 
-    @Test(description = "testing the signup page visually",enabled = false)
+    @Test(description = "testing the signup page visually")
     public void testSignUpOption() throws Exception {
         log.debug("Running testSignUpOption");
 

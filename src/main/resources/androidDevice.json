@@ -1,13 +1,14 @@
 [
   {
     "name": "pixel",
-    "deviceName": "RZ8N608BNSF",
+    "deviceName": "IN89QKBIEQGMNZ7H",
     "platformName": "Android",
-    "platformVersion": "11",
+    "platformVersion": "13",
     "automationName": "UIAutomator2",
-    "packageName": "org.wordpress.android",
-    "activity": "org.wordpress.android.ui.WPLaunchActivity",
-    "reset": true,
-    "app": "WordPress.apk"
+    "packageName": "com.instagram.android",
+    "activity":"com.instagram.android.activity.MainTabActivity",
+    "noReset": true,
+    "fullReset" : false,
+    "autoGrantPermissions": true
   }
 ]

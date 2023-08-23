@@ -28,8 +28,11 @@ public class AndroidDriverBuilder extends DeviceConfig {
         androidCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, device.getPlatformName());
         androidCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, device.getPlatformVersion());
         androidCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, device.getAutomationName());
-        androidCapabilities.setCapability(MobileCapabilityType.NO_RESET, device.isReset());
-        androidCapabilities.setCapability(MobileCapabilityType.APP, FileUtility.getFile(device.getApp()).getAbsolutePath());
+        androidCapabilities.setCapability(MobileCapabilityType.NO_RESET, true);
+        androidCapabilities.setCapability(MobileCapabilityType.FULL_RESET, false);
+        androidCapabilities.setCapability("autoGrantPermissions", true);
+
+        // androidCapabilities.setCapability(MobileCapabilityType.APP, FileUtility.getFile(device.getApp()).getAbsolutePath());
         androidCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, device.getPackageName());
         androidCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, device.getActivity());
         driver = new AndroidDriver(new URL("http://127.0.0.1:"+ AppiumServer.getPortNumber() +"/wd/hub"), androidCapabilities);
