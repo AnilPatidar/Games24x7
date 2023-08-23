@@ -58,7 +58,7 @@ public class BaseTest {
     }
 
     public WebDriver setupMobileDriver(String platformName, String model) throws IOException {
-        model = "realme";
+        model="pixel";
         if (platformName.equalsIgnoreCase(PlatformName.ANDROID.toString())) {
             return new AndroidDriverBuilder().setupDriver(model);
         } else if (platformName.equalsIgnoreCase(PlatformName.IOS.toString())) {
