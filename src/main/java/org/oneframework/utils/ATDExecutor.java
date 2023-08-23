@@ -41,7 +41,8 @@ public class ATDExecutor {
       //  this.deviceAllocationManager = deviceAllocationManager;
     }
 
-    public boolean constructXMLAndTriggerParallelRunner(List<String> test, String pack,
+    public boolean
+    constructXMLAndTriggerParallelRunner(List<String> test, String pack,
                                                         int deviceCount, String executionType)
             throws Exception {
         boolean result;
@@ -142,6 +143,7 @@ public class ATDExecutor {
         suite.setParallel(ParallelMode.METHODS);
         listeners.add("com.epam.reportportal.testng.ReportPortalTestNGListener");
         //listeners.add("com.appium.utils.RetryListener");
+        listeners.add("org.oneframework.allureReport.TestListener");
         include(listeners, LISTENERS);
         suite.setListeners(listeners);
 
