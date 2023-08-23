@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'platformType', description: 'mobile,web', defaultValue: 'mobile')
-        string(name: 'platform', description: 'android,ios,CHROME', defaultValue: 'both')
+        string(name: 'platform', description: 'android,ios,CHROME', defaultValue: 'android')
     }
 
     environment {
@@ -17,7 +17,7 @@ pipeline {
                 script {
                     def gitRepoUrl = 'https://github.com/AnilPatidar/Games24x7.git'
                     //def checkoutDir = "${env.WORKSPACE}/repo"
-                    git branch: 'dynamic-testng', url: gitRepoUrl, credentialsId: 'github'
+                    git branch: 'main', url: gitRepoUrl, credentialsId: 'github'
                 }
             }
         }
