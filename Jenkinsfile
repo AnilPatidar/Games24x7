@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                   sh "ls -la" // Debug: List workspace content
-                  sh "/var/gradle/bin/gradle clean test -Pparam1=${params.PARAMETER_1} -Pparam2=${params.PARAMETER_2}"
+                  sh "gradle clean test -Pparam1=${params.PARAMETER_1} -Pparam2=${params.PARAMETER_2}"
                 }
             }
         }
