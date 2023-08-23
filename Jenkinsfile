@@ -17,7 +17,7 @@ pipeline {
                 script {
                     def gitRepoUrl = 'https://github.com/AnilPatidar/Games24x7.git'
                     //def checkoutDir = "${env.WORKSPACE}/repo"
-                    git branch: 'dynamic-testng', url: gitRepoUrl, credentialsId: 'github'
+                    git branch: 'main', url: gitRepoUrl, credentialsId: 'github'
                 }
             }
         }
