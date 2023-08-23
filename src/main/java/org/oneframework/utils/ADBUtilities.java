@@ -11,10 +11,7 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.Logs;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,7 +27,6 @@ import static org.oneframework.utils.StringUtils.splitLines;
 
 /**
  * @author jitu-patel
- *
  */
 
 public final class ADBUtilities {
@@ -45,11 +41,10 @@ public final class ADBUtilities {
     private static final String videoFilePath = "/Video/";
 
 
-
-
     private ADBUtilities() {
 
     }
+
     public static final String ADB_EXECUTABLE = Paths.get(getAndroidPath(), "platform-tools", "adb").toString();
     private static final String PROPERTY_REGEX = "(?<=\\[).+?(?=\\])";
 
@@ -58,7 +53,7 @@ public final class ADBUtilities {
      * @return
      */
     public static String getAndroidPath() {
-        Map <String, String> map = System.getenv();
+        Map<String, String> map = System.getenv();
         String androidHome = System.getenv("ANDROID_HOME");
 //        String androidHome = "/Users/jenkins/Library/Android/sdk";
         return StringUtils.isBlank(androidHome.isEmpty()) ? System.getProperty("android.home", "/opt/android-sdk")
@@ -80,11 +75,6 @@ public final class ADBUtilities {
         }
         return Collections.emptyList();
     }
-
-
-
-
-
 
 
     public static String getDeviceName(@NonNull String deviceId) {
@@ -118,9 +108,9 @@ public final class ADBUtilities {
     }
 
 
-    public static String runAndroidDeviceCommand(@NonNull String deviceId,@NonNull String command) {
+    public static String runAndroidDeviceCommand(@NonNull String deviceId, @NonNull String command) {
         String cmd = String.format(
-                "%s -s %s "+command, ADB_EXECUTABLE, deviceId);
+                "%s -s %s " + command, ADB_EXECUTABLE, deviceId);
         System.out.println(cmd);
         CommandLineResponse response = exec(cmd);
         if (response.getExitCode() == 0) {
@@ -133,7 +123,7 @@ public final class ADBUtilities {
         getLogsFolderPath(fileName);
         Logs logs = driver.manage().logs();
         LogEntries logEntries = logs.get("logcat");
-        File logFile = new File(System.getProperty("user.dir")+ logsFilePath +fileName);
+        File logFile = new File(System.getProperty("user.dir") + logsFilePath + fileName);
         BufferedWriter writer = new BufferedWriter(new FileWriter(logFile));
 
         List<LogEntry> entries = logEntries.getAll();
@@ -147,40 +137,54 @@ public final class ADBUtilities {
         return logFile.getAbsolutePath();
     }
 
-    public static void dumpVideo(AndroidDriver<AndroidElement> driver,String fileName) throws IOException {
+    public static void dumpVideo(AndroidDriver<AndroidElement> driver, String fileName) throws IOException {
         getVideoFolderPath(fileName);
-        AndroidStartScreenRecordingOptions startScreenRecordingOptions=new AndroidStartScreenRecordingOptions()
+        AndroidStartScreenRecordingOptions startScreenRecordingOptions = new AndroidStartScreenRecordingOptions()
                 .withTimeLimit(Duration.ofSeconds(30));
         driver.startRecordingScreen(startScreenRecordingOptions);
-        var base64String=driver.stopRecordingScreen();
+        var base64String = driver.stopRecordingScreen();
         byte[] data = Base64.decodeBase64(base64String);
         Path path = Paths.get(fileName);
         Files.write(path, data);
     }
 
-    public static void dumpScreenShot(File srcFile,String fileName) throws IOException {
+    public static void dumpScreenShot(File srcFile, String fileName) throws IOException {
         getScreenshotFolderPath(fileName);
-        File destFile=new File(System.getProperty("user.dir")+screenshotFilePath+fileName);
-        FileUtils.copyFile(srcFile,destFile);
+        File destFile = new File(System.getProperty("user.dir") + screenshotFilePath + fileName);
+        FileUtils.copyFile(srcFile, destFile);
         System.out.println("Screenshot saved at: " + destFile.getAbsolutePath());
     }
 
     public static void getLogsFolderPath(String fileName) throws IOException {
-        File logFile = new File(System.getProperty("user.dir")+ logsFilePath +fileName);
+        File logFile = new File(System.getProperty("user.dir") + logsFilePath + fileName);
         logFile.getParentFile().mkdirs();
         logFile.createNewFile();
     }
 
     public static void getScreenshotFolderPath(String fileName) throws IOException {
-        File screenShotFile = new File(System.getProperty("user.dir")+ screenshotFilePath +fileName);
+        File screenShotFile = new File(System.getProperty("user.dir") + screenshotFilePath + fileName);
         screenShotFile.getParentFile().mkdirs();
         screenShotFile.createNewFile();
     }
 
+
     public static void getVideoFolderPath(String fileName) throws IOException {
-        File videoFile = new File(System.getProperty("user.dir")+ videoFilePath +fileName);
+        File videoFile = new File(System.getProperty("user.dir") + videoFilePath + fileName);
         videoFile.getParentFile().mkdirs();
         videoFile.createNewFile();
     }
+
+
+    public static void adbPushDesktopFolderToMobile(String desktopFolderPath, String androidFolderPath) throws IOException {
+        String adbCommand = "adb push /Users/anil-patidar/Documents/Games24x7 Phone/DCIM/MyAlbums/autothon23";
+        Process process = Runtime.getRuntime().exec(adbCommand);
+        System.out.println(process);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+}
 
 }
