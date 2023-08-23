@@ -1,6 +1,5 @@
 pipeline {
-    agent any
-    //{label 'local' }
+    agent {label 'local' }
 
     parameters {
         string(name: 'platformType', description: 'mobile,web', defaultValue: 'mobile')
