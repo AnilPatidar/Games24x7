@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'platformType', description: 'mobile,web', defaultValue: 'mobile')
-        string(name: 'platform', description: 'android,ios,CHROME', defaultValue: 'both')
+        string(name: 'platform', description: 'android,ios,CHROME', defaultValue: 'android')
     }
 
     environment {
