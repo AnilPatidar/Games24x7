@@ -37,7 +37,7 @@ public class ConfigUtils {
 
         configs = overrideIfSpecifiedAsEnvVariable(configs);
 
-        System.out.println(configs);
+//        System.out.println(configs);
         return configs;
     }
 

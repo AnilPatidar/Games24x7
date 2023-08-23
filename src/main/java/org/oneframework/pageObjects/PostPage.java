@@ -23,10 +23,10 @@ public class PostPage extends Page {
     private WebElement postElement;
 
 
-    @FindBy(xpath = "//a[@data-testid='SideNav_NewTweet_Button']")
+    @FindBy(xpath = "//div[@data-testid='tweetButtonInline']")
     private WebElement postFinalButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[3]/div[2]/div[1]/div/div/div/div[1]/div[2]/div/div/div/div/div/div/div[2]/div/div/div/div/label/div[1]/div/div/div/div/div/div[2]/div")
+    @FindBy(xpath = "//div[@data-testid='tweetTextarea_0']")
     private WebElement textArea;
 
 
@@ -42,14 +42,9 @@ public class PostPage extends Page {
     }
 
     public void postTweet(String tweet) throws Exception {
-        clickElement(postElement);
         clickElement(textArea);
         enterText(textArea,tweet);
-        List<WebElement> s = (List<WebElement>) driver.findElements(By.xpath("//a[@data-testid='SideNav_NewTweet_Button']"));
         clickElement(postFinalButton);
-        Thread.sleep(40000);
-
-
     }
 
 

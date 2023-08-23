@@ -13,6 +13,7 @@ import org.oneframework.enums.PlatformName;
 import org.oneframework.enums.PlatformType;
 import org.oneframework.logger.LoggingManager;
 import org.oneframework.utils.ADBUtilities;
+import org.oneframework.utils.FileUtility;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
@@ -31,6 +32,11 @@ public class BaseTest {
     public void startAppiumServer(String platformType, @Optional String platformName) throws IOException {
         if (platformType.equalsIgnoreCase(PlatformType.MOBILE.toString())) {
 
+        } else if (platformName.equalsIgnoreCase(PlatformName.CHROME.name())) {
+            File screenShotFolder = new File(System.getProperty("user.dir")+ FileUtility.screenshotFilePath);
+            if(screenShotFolder.exists()){
+                FileUtility.deleteFolder(screenShotFolder);
+            }
         }
     }
 
@@ -78,7 +84,7 @@ public class BaseTest {
         return null;
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void teardownDriver(ITestResult result) throws IOException, InterruptedException {
         if(!result.isSuccess()) {
             if(System.getenv("platform").contains("android")){

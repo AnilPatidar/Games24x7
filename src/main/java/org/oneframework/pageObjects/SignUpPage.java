@@ -5,11 +5,14 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.oneframework.helpers.Page;
 import org.oneframework.logger.LoggingManager;
+import org.oneframework.utils.FileUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
 
 
 public class SignUpPage extends Page {
@@ -44,6 +47,8 @@ public class SignUpPage extends Page {
     private WebElement login;
 
 
+
+
     WebDriver driver;
 
     public SignUpPage(WebDriver driver) throws InterruptedException {
@@ -58,14 +63,16 @@ public class SignUpPage extends Page {
         return getText(elePageTitle);
     }
 
-    public void login(String email, String username,String passwordCode){
+    public void login(String email, String username,String passwordCode) throws IOException {
         clickElement(signIn);
         clickElement(phoneNumber);
         enterText(phoneNumber,email);
         if(isDisplayed(nextButton)) {
             clickElement(nextButton);
         }
-        enterText(userName,username);
+        if(isDisplayed(userName)){
+            enterText(userName,username);
+        }
         if(isDisplayed(nextButton)) {
             clickElement(nextButton);
         }
@@ -76,5 +83,7 @@ public class SignUpPage extends Page {
         }
 
     }
+
+
 
 }

@@ -1,10 +1,17 @@
 package org.oneframework.utils;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebElement;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class FileUtility {
+
+    public static final String screenshotFilePath = "/Screenshot/";
+
 
     public static File getFile(String fileName) throws IOException {
         if (FileUtility.class.getClassLoader().getResourceAsStream(fileName) != null) {
@@ -31,5 +38,29 @@ public class FileUtility {
 
     public static void forceDelete(File file) throws IOException {
         file.delete();
+    }
+
+    public static void takeScreenShot(WebElement element) throws IOException {
+        File screenshotFile = element.getScreenshotAs(OutputType.FILE);
+        // Save the cropped screenshot to a file
+        File destinationFile = new File(System.getProperty("user.dir")+ screenshotFilePath +"IMG_"+System.currentTimeMillis()+".png");
+        destinationFile.getParentFile().mkdirs();
+        destinationFile.createNewFile();
+        FileUtils.copyFile(screenshotFile, destinationFile);
+        System.out.println("Screenshot of element saved to: " + destinationFile.getAbsolutePath());
+    }
+
+    public static void deleteFolder(File folder) {
+        if (folder.isDirectory()) {
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    deleteFolder(file);
+                }
+            }
+        }
+        if (!folder.delete()) {
+            System.out.println("Failed to delete folder: " + folder);
+        }
     }
 }
