@@ -5,14 +5,19 @@
     <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     <listener class-name="org.oneframework.allureReport.TestListener"/>
   </listeners>
-  <test thread-count="3" parallel="methods" name="test 0" verbose="2">
+  <test thread-count="10" parallel="methods" name="test chrome" verbose="2">
     <parameter name="platformType" value="web"/>
     <parameter name="platformName" value="chrome"/>
     <classes>
       <class name="tests.TwitterPageTest"/>
     </classes>
   </test>
-  <test thread-count="1" parallel="methods" name="test 1" verbose="2">
+  <test thread-count="10" parallel="methods" name="test api" verbose="2">
+    <classes>
+      <class name="tests.TwitterApiTest"/>
+    </classes>
+  </test>
+  <test thread-count="1" parallel="methods" name="test mobile" verbose="2">
     <parameter name="platformType" value="mobile"/>
     <parameter name="platformName" value="android"/>
     <classes>

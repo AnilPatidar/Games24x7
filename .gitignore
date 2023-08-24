@@ -1,7 +1,6 @@
 #Gradle and eclipse generated files#
 .classpath
 .project
-target
 .settings
 .gradle
 .idea
