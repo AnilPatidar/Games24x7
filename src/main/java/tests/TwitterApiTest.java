@@ -50,8 +50,9 @@ public class TwitterApiTest extends BaseRestClient {
 
         //post api call for tweet
         log.info("Calling twitter post api");
+        log.info("Request Body ==> " + request.getBody().toString());
         Response response = request.post("https://api.twitter.com/2/tweets");
-
+        log.info("Response Body ==> " + response.getBody().toString());
         //assert response code
         log.info("Validating respons code");
         Assert.assertEquals(response.getStatusCode(), 201, "Response code is not 201");
