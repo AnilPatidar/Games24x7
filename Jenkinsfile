@@ -1,10 +1,10 @@
 pipeline {
     agent {label 'local' }
 
-    parameters {
+    //parameters {
         //string(name: 'platformType', description: 'mobile,web', defaultValue: 'web')
         //string(name: 'platform', description: 'android,ios,CHROME', defaultValue: 'chrome')
-    }
+   // }
 
     environment {
             platformType = "${params.platformType}"
