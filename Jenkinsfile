@@ -2,8 +2,8 @@ pipeline {
     agent {label 'local' }
 
     parameters {
-        string(name: 'platformType', description: 'mobile,web', defaultValue: 'web')
-        string(name: 'platform', description: 'android,ios,CHROME', defaultValue: 'chrome')
+        //string(name: 'platformType', description: 'mobile,web', defaultValue: 'web')
+        //string(name: 'platform', description: 'android,ios,CHROME', defaultValue: 'chrome')
     }
 
     environment {
