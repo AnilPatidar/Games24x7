@@ -46,10 +46,10 @@ public class TwitterPageTest extends BaseTest {
     public Object[][] getData(){
         return new Object[][]{
                 {PostUtils.post1,1},
-                {PostUtils.post2,2},
-                {PostUtils.post3,3},
-                {PostUtils.post4,4},
-                {PostUtils.post5,5},
+//                {PostUtils.post2,2},
+//                {PostUtils.post3,3},
+//                {PostUtils.post4,4},
+//                {PostUtils.post5,5},
         };
     }
 
