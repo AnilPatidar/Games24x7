@@ -14,7 +14,11 @@ public class Page {
     }
 
     public boolean isDisplayed(WebElement element) {
-        return element.isDisplayed();
+        try {
+            return element.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
     }
 
     public String getText(WebElement element) {
