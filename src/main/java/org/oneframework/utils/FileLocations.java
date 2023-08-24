@@ -12,6 +12,7 @@ public interface FileLocations {
             : File.separator + "target" + File.separator;
 
     String PARALLEL_XML_LOCATION = OUTPUT_DIRECTORY + "parallel.xml";
+    String PARALLEL_XML_LOCATION_NEW = OUTPUT_DIRECTORY + "parallel2.xml";
     String REPORTS_DIRECTORY = OUTPUT_DIRECTORY + "reports" + File.separator;
 
     String SCREENSHOTS_DIRECTORY = OUTPUT_DIRECTORY + "screenshot" + File.separator;

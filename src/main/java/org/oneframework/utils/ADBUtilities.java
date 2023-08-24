@@ -129,6 +129,17 @@ public final class ADBUtilities {
         return null;
     }
 
+    public static String runAndroidDeviceCommand(@NonNull String command) {
+        String cmd = String.format(
+                "%s "+command, ADB_EXECUTABLE);
+        System.out.println(cmd);
+        CommandLineResponse response = exec(cmd);
+        if (response.getExitCode() == 0) {
+            return response.getStdOut();
+        }
+        return null;
+    }
+
     public static String dumpAdbLogs(@NonNull String fileName, AndroidDriver<AndroidElement> driver) throws InterruptedException, IOException {
         getLogsFolderPath(fileName);
         Logs logs = driver.manage().logs();

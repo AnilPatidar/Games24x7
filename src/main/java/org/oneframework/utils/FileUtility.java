@@ -1,6 +1,8 @@
 package org.oneframework.utils;
 
 import org.apache.commons.io.FileUtils;
+import org.oneframework.config.AndroidDeviceModel;
+import org.oneframework.config.DeviceConfig;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 
@@ -10,7 +12,7 @@ import java.io.InputStream;
 
 public class FileUtility {
 
-    public static final String screenshotFilePath = "/Screenshot/";
+    public static final String screenshotFilePath = "/Screenshot_X/";
 
 
     public static File getFile(String fileName) throws IOException {
@@ -62,5 +64,32 @@ public class FileUtility {
         if (!folder.delete()) {
             System.out.println("Failed to delete folder: " + folder);
         }
+    }
+
+    public static void pushMultipleFiles(File folder) throws IOException {
+        AndroidDeviceModel device = DeviceConfig.readAndroidDeviceConfig().getAndroidDeviceByName("pixel");
+        String udid = device.getDeviceName();
+        if (folder.isDirectory()) {
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    ADBUtilities.runAndroidDeviceCommand(udid, "push "+file.getAbsolutePath() + " " + "/sdcard/DCIM/Camera" );
+                }
+            }
+        }
+    }
+
+    public static void pushFile(File folder) {
+        if (folder.isDirectory()) {
+           ADBUtilities.runAndroidDeviceCommand( "push "+folder + " " + "/sdcard/" );
+        }
+//        if (folder.isDirectory()) {
+//            File[] files = folder.listFiles();
+//            if (files != null) {
+//                for (File file : files) {
+//                    ADBUtilities.runAndroidDeviceCommand( "push "+file.getAbsolutePath() + " " + "/sdcard/DCIM/Camera");
+//                }
+//            }
+//        }
     }
 }

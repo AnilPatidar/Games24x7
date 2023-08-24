@@ -18,7 +18,7 @@ public class TwitterPageTest extends BaseTest {
 
     SoftAssert softAssert = new SoftAssert();
 
-    @Test(description = "Posting in twitter",dataProvider = "getData")
+    @Test(description = "Posting in twitter",dataProvider = "getData",priority = 1)
     public void testSignInOption(String post,int index) throws Exception {
         long timeStamp = System.currentTimeMillis();
         SignUpPage signUpPage = new SignUpPage(driverThread.get());

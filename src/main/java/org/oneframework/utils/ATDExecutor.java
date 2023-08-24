@@ -25,6 +25,7 @@ import static java.util.Collections.addAll;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.oneframework.utils.ConfigFileManager.*;
 import static org.oneframework.utils.FileLocations.PARALLEL_XML_LOCATION;
+import static org.oneframework.utils.FileLocations.PARALLEL_XML_LOCATION_NEW;
 import static org.oneframework.utils.OverriddenVariable.getOverriddenStringValue;
 
 public class ATDExecutor {
@@ -216,7 +217,7 @@ public class ATDExecutor {
     public boolean testNGParallelRunner() {
         TestNG testNG = new TestNG();
         List<String> suites = Lists.newArrayList();
-        suites.add(getProperty("user.dir") + PARALLEL_XML_LOCATION);
+        suites.add(getProperty("user.dir") + PARALLEL_XML_LOCATION_NEW);
         testNG.setTestSuites(suites);
         testNG.run();
         return testNG.hasFailure();

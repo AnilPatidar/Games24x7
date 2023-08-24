@@ -86,26 +86,26 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void teardownDriver(ITestResult result) throws IOException, InterruptedException {
-        if(!result.isSuccess()) {
-            if(System.getenv("platform").contains("android")){
-                String testName = result.getMethod().getMethodName();
-                AppiumDriver driver = (AppiumDriver) driverThread.get();
-                AndroidDeviceModel device = DeviceConfig.readAndroidDeviceConfig().getAndroidDeviceByName("pixel");
-                String deviceId = device.getDeviceName();
-                String logFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".log";
-                ADBUtilities.dumpAdbLogs(logFileName, (AndroidDriver<AndroidElement>) driver);
-                log.info("Logs path:"+System.getProperty("user.dir")+ "/Logs/android/"+logFileName );
-                //Screenshot
-                String screenShotFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".png";
-                File screenshotFile = driver.getScreenshotAs(OutputType.FILE);
-                ADBUtilities.dumpScreenShot(screenshotFile,screenShotFileName);
-                log.info("Screenshot path:"+System.getProperty("user.dir")+ "/Screenshot/"+screenShotFileName );
-                //Video
-                String videoFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".mp4";
-                ADBUtilities.dumpVideo((AndroidDriver<AndroidElement>) driver,videoFileName);
-                log.info("Video path:"+System.getProperty("user.dir")+ "/Video/"+videoFileName );
-            }
-        }
+//        if(!result.isSuccess()) {
+//            if(System.getenv("platform").contains("android")){
+//                String testName = result.getMethod().getMethodName();
+//                AppiumDriver driver = (AppiumDriver) driverThread.get();
+//                AndroidDeviceModel device = DeviceConfig.readAndroidDeviceConfig().getAndroidDeviceByName("pixel");
+//                String deviceId = device.getDeviceName();
+//                String logFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".log";
+//                ADBUtilities.dumpAdbLogs(logFileName, (AndroidDriver<AndroidElement>) driver);
+//                log.info("Logs path:"+System.getProperty("user.dir")+ "/Logs/android/"+logFileName );
+//                //Screenshot
+//                String screenShotFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".png";
+//                File screenshotFile = driver.getScreenshotAs(OutputType.FILE);
+//                ADBUtilities.dumpScreenShot(screenshotFile,screenShotFileName);
+//                log.info("Screenshot path:"+System.getProperty("user.dir")+ "/Screenshot/"+screenShotFileName );
+//                //Video
+//                String videoFileName = System.currentTimeMillis()+"_"+deviceId+"_"+testName+".mp4";
+//                ADBUtilities.dumpVideo((AndroidDriver<AndroidElement>) driver,videoFileName);
+//                log.info("Video path:"+System.getProperty("user.dir")+ "/Video/"+videoFileName );
+//            }
+//        }
 
         driverThread.get().quit();
         log.info("Driver has been quit from execution");

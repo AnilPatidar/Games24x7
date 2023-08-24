@@ -11,7 +11,7 @@ public class TestNgRunner {
     @Test
     public void starTest() throws Exception {
         try {
-            boolean result=executor.constructXMLAndTriggerParallelRunner(new ArrayList<>(), "tests", 10, "distribute");
+            boolean result=executor.constructXMLAndTriggerParallelRunner(new ArrayList<>(), "tests", 1, "distribute");
         }catch (Exception e){
             e.printStackTrace();
         }

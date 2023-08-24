@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -51,6 +53,7 @@ public class InstagramLoginPage extends Page {
     private WebElement writeCaption;
 
     public void writeText(){
+        waitForElementToBePresent(writeCaption);
         enterText(writeCaption, PostUtil.post4);
     }
     public void enterUserName(){
@@ -67,25 +70,30 @@ public class InstagramLoginPage extends Page {
 
 
     public void clickFirstNextBtn(){
+        waitForElementToBePresent(firstNextButtton);
         clickElement(firstNextButtton);
     }
 
     public void clickShareBtn(){
+        waitForElementToBePresent(share);
         clickElement(share);
     }
 
 
     public void clickFinalNextBtn(){
+        waitForElementToBePresent(finalNextButtton);
         clickElement(finalNextButtton);
     }
 
 
 
     public void clickCamera(){
+        waitForElementToBePresent(camera);
         clickElement(camera);
     }
 
     public void clickMultipleSelect(){
+        waitForElementToBePresent(selectMultiple);
         clickElement(selectMultiple);
     }
 
@@ -113,6 +121,10 @@ public class InstagramLoginPage extends Page {
         log.info("Initializing the "+this.getClass().getSimpleName()+" elements");
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         Thread.sleep(1000);
+    }
+
+    protected WebElement waitForElementToBePresent(WebElement element) {
+        return (new WebDriverWait(driver, 30)).until(webDriver ->  ExpectedConditions.visibilityOf(element).apply(webDriver));
     }
 
 }

@@ -31,7 +31,7 @@ public class AndroidDriverBuilder extends DeviceConfig {
         androidCapabilities.setCapability(MobileCapabilityType.NO_RESET, true);
         androidCapabilities.setCapability(MobileCapabilityType.FULL_RESET, false);
         androidCapabilities.setCapability("autoGrantPermissions", true);
-
+        androidCapabilities.setCapability("newCommandTimeout", 100000);
         // androidCapabilities.setCapability(MobileCapabilityType.APP, FileUtility.getFile(device.getApp()).getAbsolutePath());
         androidCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, device.getPackageName());
         androidCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, device.getActivity());
