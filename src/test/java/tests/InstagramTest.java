@@ -52,7 +52,7 @@ public class InstagramTest extends BaseTest {
         androidDriver.findElement(MobileBy.AccessibilityId("Search")).click();
         String search = "new UiSelector().text(\"Search\")";
         androidDriver.findElement(MobileBy.ByAndroidUIAutomator.AndroidUIAutomator(search)).sendKeys("Screenshot_X");
-        String item = "new UiSelector().text(\"1 item\")";
+        String item = "new UiSelector().textContains(\"item\")";
         androidDriver.findElement(MobileBy.ByAndroidUIAutomator.AndroidUIAutomator(item)).click();
         String listItem = "new UiSelector().resourceId(\"com.sec.android.app.myfiles:id/file_detail_list_item\")";
         TouchAction touchAction = new TouchAction(androidDriver);

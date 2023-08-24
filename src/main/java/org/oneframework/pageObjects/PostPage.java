@@ -42,6 +42,7 @@ public class PostPage extends Page {
     }
 
     public void postTweet(String tweet) throws Exception {
+        Thread.sleep(10000);
         clickElement(textArea);
         enterText(textArea,tweet);
         clickElement(postFinalButton);

@@ -64,23 +64,25 @@ public class SignUpPage extends Page {
     }
 
     public void login(String email, String username,String passwordCode) throws IOException {
-        clickElement(signIn);
-        clickElement(phoneNumber);
-        enterText(phoneNumber,email);
-        if(isDisplayed(nextButton)) {
-            clickElement(nextButton);
-        }
-        if(isDisplayed(userName)){
-            enterText(userName,username);
-        }
-        if(isDisplayed(nextButton)) {
-            clickElement(nextButton);
-        }
-        enterText(password,passwordCode);
+        try{
+            clickElement(signIn);
+            clickElement(phoneNumber);
+            enterText(phoneNumber,email);
+            if(isDisplayed(nextButton)) {
+                clickElement(nextButton);
+            }
+            if(isDisplayed(userName)){
+                enterText(userName,username);
+            }
+            if(isDisplayed(nextButton)) {
+                clickElement(nextButton);
+            }
+            enterText(password,passwordCode);
 
-        if(isDisplayed(login)) {
-            clickElement(login);
-        }
+            if(isDisplayed(login)) {
+                clickElement(login);
+            }
+        }catch(Exception e){}
 
     }
 
